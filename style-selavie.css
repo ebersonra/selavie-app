@@ -9,7 +9,7 @@
 
 @font-face {
     font-family: 'ArboriaLight';
-    src: url('https://institutoselavie.com.br/wp-content/uploads/2025/01/Arboria-Light.otf') format('opentype');
+    src: url('/fonts/Arboria-Light.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -98,7 +98,7 @@ header {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(10, 52, 42, 0.6), rgba(10, 52, 42, 0.6)), url('https://institutoselavie.com.br/wp-content/uploads/2025/01/LOGO-6.png');
+    background: linear-gradient(rgba(10, 52, 42, 0.6), rgba(10, 52, 42, 0.6)), url('/img/hero/LOGO-6.png');
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
