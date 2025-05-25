@@ -6,6 +6,20 @@
 
 O website do Instituto Selavie é uma plataforma digital moderna e responsiva que oferece os serviços de psicoterapia para crianças, adolescentes e adultos. O site foi desenvolvido com foco em proporcionar uma experiência de usuário acolhedora e informativa.
 
+## 📁 Estrutura do Projeto
+
+```
+selavie-app/
+├── index.html              # Arquivo principal do site
+├── static/                 # Arquivos estáticos
+│   └── css/               
+│       └── style-selavie.css  # Estilos do site
+├── img/                    # Imagens do site
+│   └── logo-menu/         # Logos e imagens do menu
+├── fonts/                  # Fontes personalizadas
+└── README.md              # Documentação do projeto
+```
+
 ## 🌟 Características Principais
 
 - Design moderno e responsivo
@@ -39,10 +53,12 @@ O website do Instituto Selavie é uma plataforma digital moderna e responsiva qu
    - História da instituição
    - Missão e valores
 
-4. **Tratamentos**
-   - Internação Voluntária
-   - Atendimento Ambulatorial
-   - Acompanhamento Familiar
+4. **Serviços**
+   - Psicoterapia Infantil
+   - Psicoterapia para Adolescentes
+   - Psicoterapia para Adultos
+   - Atendimento Online
+   - Atendimento Presencial
 
 5. **Depoimentos**
    - Histórias reais de pacientes
@@ -72,9 +88,10 @@ Todos os direitos reservados - Instituto Selavie © 2025
 ## 🔄 Atualizações e Manutenção
 
 Para manter o site atualizado:
-1. Atualize o conteúdo através dos arquivos HTML
-2. Modifique estilos no arquivo `style-selavie.css`
-3. Atualize imagens na pasta `img/`
+1. Atualize o conteúdo através do arquivo `index.html`
+2. Modifique estilos no arquivo `static/css/style-selavie.css`
+3. Adicione ou atualize imagens na pasta `img/`
+4. Gerencie as fontes personalizadas na pasta `fonts/`
 
 ## 🤝 Contribuição
 
