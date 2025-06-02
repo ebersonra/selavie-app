@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Instituto Selavie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+        }
+        .login-container {
+            max-width: 400px;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .logo img {
+            max-width: 200px;
+        }
+        #loginError {
+            display: none;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="login-container">
+                    <div class="logo">
+                        <img src="/img/logo-menu/LOGO-6.png" alt="Instituto Selavie">
+                    </div>
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Entrar</button>
+                        </div>
+                        <div id="loginError" class="alert alert-danger mt-3" role="alert">
+                            Email ou senha incorretos
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        let supabase;
+
+        // Inicializar cliente Supabase
+        async function initSupabase() {
+            try {
+                const response = await fetch('/.netlify/functions/get-supabase-config');
+                const { supabaseUrl, supabaseKey } = await response.json();
+                supabase = supabase.createClient(supabaseUrl, supabaseKey);
+            } catch (error) {
+                console.error('Erro ao inicializar Supabase:', error);
+            }
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            if (!supabase) {
+                showError('Erro de configuração do sistema');
+                return;
+            }
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+                if (error) throw error;
+
+                // Salvar token de sessão
+                localStorage.setItem('sb-access-token', data.session.access_token);
+                localStorage.setItem('sb-refresh-token', data.session.refresh_token);
+
+                // Redirecionar para o painel admin
+                window.location.href = '/admin.html';
+            } catch (error) {
+                console.error('Erro de login:', error);
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('loginError');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        // Inicializar Supabase e verificar se já está logado
+        window.addEventListener('DOMContentLoaded', async () => {
+            await initSupabase();
+            if (!supabase) return;
+
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                window.location.href = '/admin.html';
+            }
+        });
+    </script>
+</body>
+</html> 
