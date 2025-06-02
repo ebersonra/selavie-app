@@ -189,14 +189,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="/static/js/admin.js"></script>
     <script>
-        let supabase;
+        let supabaseClient;
 
         // Inicializar cliente Supabase
         async function initSupabase() {
             try {
                 const response = await fetch('/.netlify/functions/get-supabase-config');
                 const { supabaseUrl, supabaseKey } = await response.json();
-                supabase = supabase.createClient(supabaseUrl, supabaseKey);
+                supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
             } catch (error) {
                 console.error('Erro ao inicializar Supabase:', error);
                 showSaveStatus(false, 'Erro ao inicializar sistema');
@@ -205,12 +205,12 @@
 
         // Verificar autenticação
         async function checkAuth() {
-            if (!supabase) {
+            if (!supabaseClient) {
                 window.location.href = '/login.html';
                 return;
             }
 
-            const { data: { session } } = await supabase.auth.getSession();
+            const { data: { session } } = await supabaseClient.auth.getSession();
             if (!session) {
                 window.location.href = '/login.html';
                 return;
@@ -223,8 +223,8 @@
         // Função de logout
         async function handleLogout() {
             try {
-                if (!supabase) throw new Error('Sistema não inicializado');
-                await supabase.auth.signOut();
+                if (!supabaseClient) throw new Error('Sistema não inicializado');
+                await supabaseClient.auth.signOut();
                 window.location.href = '/login.html';
             } catch (error) {
                 console.error('Erro ao fazer logout:', error);
