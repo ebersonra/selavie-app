@@ -312,7 +312,24 @@
         // Carregar conteúdo atual
         async function loadCurrentContent() {
             try {
-                const response = await fetch('/.netlify/functions/get-content');
+                // Primeiro, verificar se temos uma sessão válida
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                if (!session) {
+                    window.location.href = '/login.html';
+                    return;
+                }
+
+                // Fazer a requisição com o token de autenticação
+                const response = await fetch('/.netlify/functions/get-content', {
+                    headers: {
+                        'Authorization': `Bearer ${session.access_token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
                 const data = await response.json();
 
                 // Preencher Hero
@@ -340,6 +357,11 @@
             } catch (error) {
                 console.error('Erro ao carregar conteúdo:', error);
                 showSaveStatus(false, 'Erro ao carregar conteúdo');
+                
+                // Se o erro for de autenticação, redirecionar para o login
+                if (error.status === 401) {
+                    window.location.href = '/login.html';
+                }
             }
         }
 

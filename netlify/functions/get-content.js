@@ -3,11 +3,11 @@ const { createClient } = require('@supabase/supabase-js');
 // Inicializa o cliente do Supabase
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
+  process.env.SUPABASE_SERVICE_ROLE_KEY // Usando service role key para acesso admin
 );
 
 exports.handler = async (event) => {
-  // Apenas aceita método GET
+  // Verificar se o método é GET
   if (event.httpMethod !== 'GET') {
     return {
       statusCode: 405,
@@ -16,21 +16,53 @@ exports.handler = async (event) => {
   }
 
   try {
-    // Busca todo o conteúdo do site
+    // Verificar autenticação
+    const authHeader = event.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return {
+        statusCode: 401,
+        body: JSON.stringify({ error: 'Unauthorized - No token provided' })
+      };
+    }
+
+    const token = authHeader.split(' ')[1];
+    
+    // Verificar se o token é válido
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+    
+    if (authError || !user) {
+      return {
+        statusCode: 401,
+        body: JSON.stringify({ error: 'Unauthorized - Invalid token' })
+      };
+    }
+
+    // Buscar o conteúdo do site
     const { data, error } = await supabase
       .from('site_content')
       .select('*')
       .eq('id', 1)
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error('Database error:', error);
+      throw error;
+    }
+
+    if (!data) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ error: 'Content not found' })
+      };
+    }
 
     return {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
-        // Permitir CORS apenas para seu domínio em produção
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS'
       },
       body: JSON.stringify(data)
     };
