@@ -44,10 +44,8 @@ function updatePageContent() {
         if (contactItems && Array.isArray(contactItems)) {
             element.innerHTML = contactItems.map(item => `
                 <li>
-                    <a href="${item.url}">
-                        <i class="fas ${item.icon}"></i>
-                        <span class="contact-text">${item.text}</span>
-                    </a>
+                    <i class="fas ${item.icon}"></i>
+                    <span class="contact-text">${item.text}</span>
                 </li>
             `).join('');
         }
