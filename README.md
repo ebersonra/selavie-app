@@ -1,6 +1,6 @@
 # Instituto Selavie - Website
 
-![Instituto Selavie Logo](img/logo-menu/LOGO-6.png)
+[![Instituto Selavie Logo](img/logo-menu/LOGO-6.png)](https://institutoselavie.com.br)
 
 ## 📋 Sobre o Projeto
 

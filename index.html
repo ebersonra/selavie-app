@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instituto Selavie - Psicoterapia online e presencial</title>
+    <title data-content="meta.title"></title>
     <link href="/static/css/style-selavie.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="/img/favicon/cropped-ICONE-1.png" type="image/x-icon">
@@ -16,13 +16,13 @@
                 <img src="/img/logo-menu/LOGO-6.png" alt="Instituto Salavie">
             </div>
             <nav class="nav-menu">
-                <a href="/" class="nav-link">Início</a>
-                <a href="#about" class="nav-link">Quem Somos</a>
-                <a href="#services" class="nav-link">Tratamentos</a>
-                <a href="#testimonials" class="nav-link">Depoimentos</a>
-                <a href="#contact" class="nav-link">Contato</a>
+                <a href="/" class="nav-link" data-content="navigation.home"></a>
+                <a href="#about" class="nav-link" data-content="navigation.about"></a>
+                <a href="#services" class="nav-link" data-content="navigation.services"></a>
+                <a href="#testimonials" class="nav-link" data-content="navigation.testimonials"></a>
+                <a href="#contact" class="nav-link" data-content="navigation.contact"></a>
             </nav>
-            <a href="#" class="header-cta">Fale com um especialista</a>
+            <a href="#" class="header-cta" data-content="navigation.ctaButton"></a>
         </div>
     </header>
 
@@ -30,9 +30,9 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Tratamento Humanizado para Dependência Química</h1>
-                <p>O Instituto Sélavie oferece tratamentos personalizados em ambiente acolhedor, com equipe multidisciplinar especializada para recuperação efetiva e sustentável.</p>
-                <a href="#cta-section" class="cta-button">Iniciar recuperação agora</a>
+                <h1 data-content="hero.title"></h1>
+                <p data-content="hero.description"></p>
+                <a href="#cta-section" class="cta-button" data-content="hero.ctaButton"></a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -48,10 +48,10 @@
                     <img src="/api/placeholder/600/400" alt="Instituto Sélavie">
                 </div>
                 <div class="about-content">
-                    <h2>Quem Somos</h2>
-                    <p>Fundado com o propósito de oferecer tratamento humanizado e eficaz para dependência química, o Instituto Sélavie integra métodos terapêuticos comprovados com acolhimento personalizado.</p>
-                    <p>Nossa abordagem multidisciplinar combina psicoterapia, terapia ocupacional, acompanhamento médico e nutricional, práticas integrativas e suporte familiar, visando a recuperação integral do paciente.</p>
-                    <a href="#" class="service-link">Conheça nossa história <span>&rarr;</span></a>
+                    <h2 data-content="about.title"></h2>
+                    <p data-content="about.paragraph1"></p>
+                    <p data-content="about.paragraph2"></p>
+                    <a href="#" class="service-link" data-content="about.link"></a>
                 </div>
             </div>
         </div>
@@ -61,38 +61,38 @@
     <section class="services" id="services">
         <div class="container">
             <div class="section-header">
-                <h2>Nossos Tratamentos</h2>
-                <p>Desenvolvemos programas terapêuticos personalizados para cada paciente, considerando suas necessidades específicas e contexto individual.</p>
+                <h2 data-content="services.title"></h2>
+                <p data-content="services.description"></p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" data-service="0">
                     <div class="service-image">
                         <img src="/api/placeholder/400/300" alt="Internação">
                     </div>
                     <div class="service-content">
-                        <h3>Internação Voluntária</h3>
-                        <p>Tratamento intensivo em ambiente acolhedor e seguro, com equipe presente 24 horas para suporte completo durante a recuperação.</p>
-                        <a href="#" class="service-link">Saiba mais <span>&rarr;</span></a>
+                        <h3 data-content="services.items.0.title"></h3>
+                        <p data-content="services.items.0.description"></p>
+                        <a href="#" class="service-link" data-content="services.items.0.link"></a>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-service="1">
                     <div class="service-image">
                         <img src="/api/placeholder/400/300" alt="Atendimento Ambulatorial">
                     </div>
                     <div class="service-content">
-                        <h3>Atendimento Ambulatorial</h3>
-                        <p>Acompanhamento terapêutico sem internação, ideal para quem precisa manter suas atividades diárias durante o tratamento.</p>
-                        <a href="#" class="service-link">Saiba mais <span>&rarr;</span></a>
+                        <h3 data-content="services.items.1.title"></h3>
+                        <p data-content="services.items.1.description"></p>
+                        <a href="#" class="service-link" data-content="services.items.1.link"></a>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-service="2">
                     <div class="service-image">
                         <img src="/api/placeholder/400/300" alt="Acompanhamento Familiar">
                     </div>
                     <div class="service-content">
-                        <h3>Acompanhamento Familiar</h3>
-                        <p>Suporte terapêutico para familiares, essencial para a recuperação sustentável do paciente e reconstrução dos vínculos afetivos.</p>
-                        <a href="#" class="service-link">Saiba mais <span>&rarr;</span></a>
+                        <h3 data-content="services.items.2.title"></h3>
+                        <p data-content="services.items.2.description"></p>
+                        <a href="#" class="service-link" data-content="services.items.2.link"></a>
                     </div>
                 </div>
             </div>
@@ -102,11 +102,11 @@
     <!-- CTA Section -->
     <section class="cta-section" id="cta-section">
         <div class="container cta-container">
-            <h2>Transforme sua vida hoje mesmo</h2>
-            <p>Não espere mais para iniciar sua jornada de recuperação. Entre em contato agora e converse com nossa equipe especializada sobre as melhores opções de tratamento.</p>
+            <h2 data-content="cta.title"></h2>
+            <p data-content="cta.description"></p>
             <div class="cta-buttons">
-                <a href="https://wa.me/5541998558987?text=Olá,%20Instituto%20Selavie!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informações." target="_blank" class="cta-main">Fale conosco no WhatsApp</a>
-                <a href="#" class="cta-secondary">Conheça nossos planos</a>
+                <a href="https://bit.ly/43Cl99d" target="_blank" class="cta-main" data-content="cta.mainButton"></a>
+                <a href="#" class="cta-secondary" data-content="cta.secondaryButton"></a>
             </div>
         </div>
     </section>
@@ -115,48 +115,48 @@
     <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-header">
-                <h2>Depoimentos</h2>
-                <p>Histórias reais de transformação e superação de pessoas que passaram pelo Instituto Sélavie.</p>
+                <h2 data-content="testimonials.title"></h2>
+                <p data-content="testimonials.description"></p>
             </div>
             <div class="testimonials-grid">
-                <div class="testimonial-card">
+                <div class="testimonial-card" data-testimonial="0">
                     <div class="testimonial-content">
-                        <p class="testimonial-text">O tratamento no Instituto Sélavie mudou completamente minha vida. A equipe é extremamente preparada e acolhedora. Hoje estou há 2 anos sem recaídas e reconquistei minha família e meu emprego.</p>
+                        <p class="testimonial-text" data-content="testimonials.items.0.text"></p>
                         <div class="testimonial-author">
                             <div class="author-image">
-                                <img src="/api/placeholder/100/100" alt="Carlos M.">
+                                <img src="/api/placeholder/100/100" alt="Depoimento 1">
                             </div>
                             <div class="author-info">
-                                <h4>Carlos M.</h4>
-                                <p>Paciente recuperado</p>
+                                <h4 data-content="testimonials.items.0.author"></h4>
+                                <p data-content="testimonials.items.0.role"></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
+                <div class="testimonial-card" data-testimonial="1">
                     <div class="testimonial-content">
-                        <p class="testimonial-text">Como mãe, vi meu filho renascer após o tratamento. O suporte que recebemos durante todo o processo foi fundamental não só para ele, mas para toda a família aprender a lidar com a situação.</p>
+                        <p class="testimonial-text" data-content="testimonials.items.1.text"></p>
                         <div class="testimonial-author">
                             <div class="author-image">
-                                <img src="/api/placeholder/100/100" alt="Márcia P.">
+                                <img src="/api/placeholder/100/100" alt="Depoimento 2">
                             </div>
                             <div class="author-info">
-                                <h4>Márcia P.</h4>
-                                <p>Familiar de paciente</p>
+                                <h4 data-content="testimonials.items.1.author"></h4>
+                                <p data-content="testimonials.items.1.role"></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
+                <div class="testimonial-card" data-testimonial="2">
                     <div class="testimonial-content">
-                        <p class="testimonial-text">O diferencial do Sélavie é o tratamento humanizado. Não me senti apenas mais um paciente, mas alguém que realmente importava. As terapias são personalizadas e isso faz toda diferença na recuperação.</p>
+                        <p class="testimonial-text" data-content="testimonials.items.2.text"></p>
                         <div class="testimonial-author">
                             <div class="author-image">
-                                <img src="/api/placeholder/100/100" alt="Roberto S.">
+                                <img src="/api/placeholder/100/100" alt="Depoimento 3">
                             </div>
                             <div class="author-info">
-                                <h4>Roberto S.</h4>
-                                <p>Paciente recuperado</p>
+                                <h4 data-content="testimonials.items.2.author"></h4>
+                                <p data-content="testimonials.items.2.role"></p>
                             </div>
                         </div>
                     </div>
@@ -205,35 +205,39 @@
                     <ul class="contact-info">
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            <span class="contact-text">Av. Principal, 123 - São Paulo, SP</span>
+                            <span class="contact-text" data-content="contact.address"></span>
                         </li>
                         <li>
                             <i class="fas fa-phone"></i>
-                            <span class="contact-text">(11) 99999-9999</span>
+                            <span class="contact-text" data-content="contact.phone"></span>
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            <span class="contact-text">contato@institutoselavie.com.br</span>
+                            <span class="contact-text" data-content="contact.email"></span>
                         </li>
                         <li>
                             <i class="fas fa-clock"></i>
-                            <span class="contact-text">Atendimento 24 horas</span>
+                            <span class="contact-text" data-content="contact.hours"></span>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Instituto Sélavie. Todos os direitos reservados.</p>
+                <p data-content="footer.copyright"></p>
             </div>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/5541998558987?text=Olá,%20Instituto%20Selavie!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informações." target="_blank" class="whatsapp-btn">
+    <a href="https://bit.ly/43Cl99d" target="_blank" class="whatsapp-btn">
         <i class="fab fa-whatsapp fa-2x"></i>
     </a>
 
     <!-- Floating CTA -->
-    <a href="#" class="floating-cta">Fale conosco</a>
+    <a href="#" class="floating-cta" data-content="navigation.ctaButton"></a>
+
+    <!-- Load Scripts -->
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/content-loader.js"></script>
 </body>
 </html>
