@@ -76,6 +76,38 @@ const siteContent = {
         hours: "Atendimento 24 horas"
     },
     footer: {
-        copyright: "© 2025 Instituto Sélavie. Todos os direitos reservados."
+        copyright: "© 2025 Instituto Sélavie. Todos os direitos reservados.",
+        about: {
+            description: "O Instituto Sélavie é especializado no tratamento humanizado de dependência química, oferecendo suporte completo para recuperação efetiva e sustentável."
+        },
+        columns: {
+            quickLinks: {
+                title: "Links Rápidos",
+                links: [
+                    { text: "Página Inicial", url: "#" },
+                    { text: "Sobre Nós", url: "#about" },
+                    { text: "Nossos Tratamentos", url: "#services" },
+                    { text: "Equipe", url: "#" },
+                    { text: "Blog", url: "#" },
+                    { text: "Contato", url: "#contact" }
+                ]
+            },
+            treatments: {
+                title: "Tratamentos",
+                links: [
+                    { text: "Internação Voluntária", url: "#" },
+                    { text: "Atendimento Ambulatorial", url: "#" },
+                    { text: "Acompanhamento Familiar", url: "#" },
+                    { text: "Terapias Integrativas", url: "#" },
+                    { text: "Prevenção de Recaídas", url: "#" }
+                ]
+            }
+        },
+        social: {
+            facebook: "#",
+            instagram: "#",
+            youtube: "#",
+            linkedin: "#"
+        }
     }
 }; 

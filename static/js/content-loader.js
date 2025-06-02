@@ -13,11 +13,33 @@ function updatePageContent() {
         }
     });
 
+    // Update footer links
+    document.querySelectorAll('[data-links]').forEach(element => {
+        const linksPath = element.getAttribute('data-links');
+        const links = getNestedValue(siteContent, linksPath);
+        if (links && Array.isArray(links)) {
+            element.innerHTML = links.map(link => 
+                `<li><a href="${link.url}">${link.text}</a></li>`
+            ).join('');
+        }
+    });
+
+    // Update social media links
+    document.querySelectorAll('[data-social]').forEach(element => {
+        const socialNetwork = element.getAttribute('data-social');
+        const url = siteContent.footer.social[socialNetwork];
+        if (url) {
+            element.href = url;
+        }
+    });
+
     // Add arrow to service links
     document.querySelectorAll('.service-link').forEach(link => {
-        const span = document.createElement('span');
-        span.innerHTML = ' &rarr;';
-        link.appendChild(span);
+        if (!link.querySelector('span')) {
+            const span = document.createElement('span');
+            span.innerHTML = ' &rarr;';
+            link.appendChild(span);
+        }
     });
 }
 
