@@ -195,29 +195,47 @@
         async function initSupabase() {
             try {
                 const response = await fetch('/.netlify/functions/get-supabase-config');
+                if (!response.ok) {
+                    throw new Error('Failed to get Supabase configuration');
+                }
                 const { supabaseUrl, supabaseKey } = await response.json();
-                supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+                
+                // Criar o cliente Supabase usando o objeto global 'supabase'
+                supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+                
+                return true;
             } catch (error) {
                 console.error('Erro ao inicializar Supabase:', error);
                 showSaveStatus(false, 'Erro ao inicializar sistema');
+                return false;
             }
         }
 
         // Verificar autenticação
         async function checkAuth() {
             if (!supabaseClient) {
+                console.error('Supabase client not initialized');
                 window.location.href = '/login.html';
-                return;
+                return false;
             }
 
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            if (!session) {
+            try {
+                const { data: { session }, error } = await supabaseClient.auth.getSession();
+                if (error) throw error;
+                
+                if (!session) {
+                    window.location.href = '/login.html';
+                    return false;
+                }
+                
+                // Mostrar email do usuário
+                document.getElementById('userEmail').textContent = session.user.email;
+                return true;
+            } catch (error) {
+                console.error('Erro ao verificar autenticação:', error);
                 window.location.href = '/login.html';
-                return;
+                return false;
             }
-            
-            // Mostrar email do usuário
-            document.getElementById('userEmail').textContent = session.user.email;
         }
 
         // Função de logout
@@ -232,11 +250,82 @@
             }
         }
 
+        // Carregar conteúdo atual
+        async function loadCurrentContent() {
+            try {
+                // Verificar se o cliente está inicializado e autenticado
+                if (!supabaseClient) {
+                    throw new Error('Supabase client not initialized');
+                }
+
+                // Verificar sessão
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                if (!session) {
+                    window.location.href = '/login.html';
+                    return;
+                }
+
+                // Fazer a requisição com o token de autenticação
+                const response = await fetch('/.netlify/functions/get-content', {
+                    headers: {
+                        'Authorization': `Bearer ${session.access_token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Preencher Hero
+                document.getElementById('heroTitle').value = data.hero.title;
+                document.getElementById('heroDescription').value = data.hero.description;
+                document.getElementById('heroButton').value = data.hero.ctaButton;
+
+                // Preencher About
+                document.getElementById('aboutTitle').value = data.about.title;
+                document.getElementById('aboutParagraph1').value = data.about.paragraph1;
+                document.getElementById('aboutParagraph2').value = data.about.paragraph2;
+
+                // Preencher Contato
+                const contactItems = data.footer.columns.contact.items;
+                document.getElementById('contactAddress').value = contactItems[0].text;
+                document.getElementById('contactPhone').value = contactItems[1].text;
+                document.getElementById('contactEmail').value = contactItems[2].text;
+
+                // Preencher Redes Sociais
+                const social = data.footer.social;
+                document.getElementById('socialFacebook').value = social.facebook;
+                document.getElementById('socialInstagram').value = social.instagram;
+                document.getElementById('socialYoutube').value = social.youtube;
+                document.getElementById('socialLinkedin').value = social.linkedin;
+            } catch (error) {
+                console.error('Erro ao carregar conteúdo:', error);
+                showSaveStatus(false, 'Erro ao carregar conteúdo');
+                
+                if (error.status === 401) {
+                    window.location.href = '/login.html';
+                }
+            }
+        }
+
         // Inicializar sistema e verificar autenticação
-        window.addEventListener('DOMContentLoaded', async () => {
-            await initSupabase();
-            await checkAuth();
-        });
+        async function init() {
+            const initialized = await initSupabase();
+            if (!initialized) {
+                showSaveStatus(false, 'Erro ao inicializar sistema');
+                return;
+            }
+
+            const authenticated = await checkAuth();
+            if (authenticated) {
+                await loadCurrentContent();
+            }
+        }
+
+        // Iniciar quando a página carregar
+        window.addEventListener('DOMContentLoaded', init);
 
         // Função para mostrar notificação de status
         function showSaveStatus(success, message) {
@@ -308,65 +397,6 @@
                 showSaveStatus(false, 'Erro ao atualizar redes sociais');
             }
         }
-
-        // Carregar conteúdo atual
-        async function loadCurrentContent() {
-            try {
-                // Primeiro, verificar se temos uma sessão válida
-                const { data: { session } } = await supabaseClient.auth.getSession();
-                if (!session) {
-                    window.location.href = '/login.html';
-                    return;
-                }
-
-                // Fazer a requisição com o token de autenticação
-                const response = await fetch('/.netlify/functions/get-content', {
-                    headers: {
-                        'Authorization': `Bearer ${session.access_token}`
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-
-                // Preencher Hero
-                document.getElementById('heroTitle').value = data.hero.title;
-                document.getElementById('heroDescription').value = data.hero.description;
-                document.getElementById('heroButton').value = data.hero.ctaButton;
-
-                // Preencher About
-                document.getElementById('aboutTitle').value = data.about.title;
-                document.getElementById('aboutParagraph1').value = data.about.paragraph1;
-                document.getElementById('aboutParagraph2').value = data.about.paragraph2;
-
-                // Preencher Contato
-                const contactItems = data.footer.columns.contact.items;
-                document.getElementById('contactAddress').value = contactItems[0].text;
-                document.getElementById('contactPhone').value = contactItems[1].text;
-                document.getElementById('contactEmail').value = contactItems[2].text;
-
-                // Preencher Redes Sociais
-                const social = data.footer.social;
-                document.getElementById('socialFacebook').value = social.facebook;
-                document.getElementById('socialInstagram').value = social.instagram;
-                document.getElementById('socialYoutube').value = social.youtube;
-                document.getElementById('socialLinkedin').value = social.linkedin;
-            } catch (error) {
-                console.error('Erro ao carregar conteúdo:', error);
-                showSaveStatus(false, 'Erro ao carregar conteúdo');
-                
-                // Se o erro for de autenticação, redirecionar para o login
-                if (error.status === 401) {
-                    window.location.href = '/login.html';
-                }
-            }
-        }
-
-        // Carregar conteúdo quando a página carregar
-        document.addEventListener('DOMContentLoaded', loadCurrentContent);
     </script>
 </body>
 </html> 
