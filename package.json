@@ -1,0 +1,21 @@
+{
+  "name": "selavie-app",
+  "version": "1.0.0",
+  "description": "Instituto Selavie Website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "netlify build",
+    "deploy": "netlify deploy --prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "faunadb": "^4.8.0",
+    "netlify-cli": "^12.0.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.8"
+  }
+}

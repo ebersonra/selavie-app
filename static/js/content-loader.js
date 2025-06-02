@@ -1,3 +1,17 @@
+// Fetch content from database
+async function fetchContent() {
+    try {
+        const response = await fetch('/.netlify/functions/get-content');
+        const data = await response.json();
+        Object.assign(siteContent, data);
+        updatePageContent();
+    } catch (error) {
+        console.error('Error fetching content:', error);
+        // Use fallback content from config.js if fetch fails
+        updatePageContent();
+    }
+}
+
 function updatePageContent() {
     // Helper function to get nested object value from string path
     function getNestedValue(obj, path) {
@@ -70,5 +84,5 @@ function updatePageContent() {
     });
 }
 
-// Call the function when the DOM is loaded
-document.addEventListener('DOMContentLoaded', updatePageContent); 
+// Call fetchContent when the DOM is loaded
+document.addEventListener('DOMContentLoaded', fetchContent); 
