@@ -128,7 +128,7 @@ const siteContent = {
         },
         social: {
             facebook: "#",
-            instagram: "#",
+            instagram: "https://www.instagram.com/institutoselavie/",
             youtube: "#",
             linkedin: "#"
         }
