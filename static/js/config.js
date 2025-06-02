@@ -2,6 +2,10 @@ const siteContent = {
     meta: {
         title: "Instituto Selavie - Psicoterapia online e presencial"
     },
+    whatsapp: {
+        url: "https://bit.ly/43Cl99d",
+        text: "Fale conosco no WhatsApp"
+    },
     navigation: {
         home: "Início",
         about: "Quem Somos",
@@ -69,12 +73,6 @@ const siteContent = {
             }
         ]
     },
-    contact: {
-        address: "Av. Principal, 123 - São Paulo, SP",
-        phone: "(11) 99999-9999",
-        email: "contato@institutoselavie.com.br",
-        hours: "Atendimento 24 horas"
-    },
     footer: {
         copyright: "© 2025 Instituto Sélavie. Todos os direitos reservados.",
         about: {
@@ -100,6 +98,31 @@ const siteContent = {
                     { text: "Acompanhamento Familiar", url: "#" },
                     { text: "Terapias Integrativas", url: "#" },
                     { text: "Prevenção de Recaídas", url: "#" }
+                ]
+            },
+            contact: {
+                title: "Contato",
+                items: [
+                    { 
+                        icon: "fa-map-marker-alt",
+                        text: "Av. Principal, 123 - São Paulo, SP",
+                        url: "https://maps.google.com/?q=Av. Principal, 123 - São Paulo, SP"
+                    },
+                    {
+                        icon: "fa-phone",
+                        text: "(11) 99999-9999",
+                        url: "tel:+5511999999999"
+                    },
+                    {
+                        icon: "fa-envelope",
+                        text: "contato@institutoselavie.com.br",
+                        url: "mailto:contato@institutoselavie.com.br"
+                    },
+                    {
+                        icon: "fa-clock",
+                        text: "Atendimento 24 horas",
+                        url: "#horarios"
+                    }
                 ]
             }
         },

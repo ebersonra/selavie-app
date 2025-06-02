@@ -13,6 +13,19 @@ function updatePageContent() {
         }
     });
 
+    // Update WhatsApp button
+    document.querySelectorAll('[data-whatsapp]').forEach(element => {
+        const property = element.getAttribute('data-whatsapp');
+        const value = siteContent.whatsapp[property];
+        if (value) {
+            if (property === 'url') {
+                element.href = value;
+            } else {
+                element.textContent = value;
+            }
+        }
+    });
+
     // Update footer links
     document.querySelectorAll('[data-links]').forEach(element => {
         const linksPath = element.getAttribute('data-links');
@@ -21,6 +34,22 @@ function updatePageContent() {
             element.innerHTML = links.map(link => 
                 `<li><a href="${link.url}">${link.text}</a></li>`
             ).join('');
+        }
+    });
+
+    // Update contact information
+    document.querySelectorAll('[data-contact]').forEach(element => {
+        const contactPath = element.getAttribute('data-contact');
+        const contactItems = getNestedValue(siteContent, contactPath);
+        if (contactItems && Array.isArray(contactItems)) {
+            element.innerHTML = contactItems.map(item => `
+                <li>
+                    <a href="${item.url}">
+                        <i class="fas ${item.icon}"></i>
+                        <span class="contact-text">${item.text}</span>
+                    </a>
+                </li>
+            `).join('');
         }
     });
 
