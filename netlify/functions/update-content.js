@@ -16,16 +16,41 @@ exports.handler = async (event) => {
   }
 
   try {
-    const data = JSON.parse(event.body);
+    const { section, content } = JSON.parse(event.body);
 
-    // Atualiza o documento de conteúdo do site
-    const { data: updatedData, error } = await supabase
+    if (!section || !content) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Section and content are required' })
+      };
+    }
+
+    // Primeiro, busca o conteúdo atual
+    const { data: currentData, error: fetchError } = await supabase
       .from('site_content')
-      .update(data)
+      .select(section)
       .eq('id', 1)
       .single();
 
-    if (error) throw error;
+    if (fetchError) throw fetchError;
+
+    // Mescla o novo conteúdo com o existente
+    const updatedContent = {
+      [section]: {
+        ...currentData[section],
+        ...content
+      }
+    };
+
+    // Atualiza apenas a seção específica
+    const { data: updatedData, error: updateError } = await supabase
+      .from('site_content')
+      .update(updatedContent)
+      .eq('id', 1)
+      .select()
+      .single();
+
+    if (updateError) throw updateError;
 
     return {
       statusCode: 200,
@@ -33,13 +58,19 @@ exports.handler = async (event) => {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       },
-      body: JSON.stringify(updatedData)
+      body: JSON.stringify({
+        message: 'Content updated successfully',
+        data: updatedData[section]
+      })
     };
   } catch (error) {
     console.error('Error:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to update content' })
+      body: JSON.stringify({ 
+        error: 'Failed to update content',
+        details: error.message 
+      })
     };
   }
 }; 

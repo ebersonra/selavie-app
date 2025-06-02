@@ -7,11 +7,20 @@ const supabase = createClient(
 );
 
 exports.handler = async (event) => {
+  // Apenas aceita método GET
+  if (event.httpMethod !== 'GET') {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: 'Method not allowed' })
+    };
+  }
+
   try {
-    // Busca o documento de conteúdo do site
+    // Busca todo o conteúdo do site
     const { data, error } = await supabase
       .from('site_content')
       .select('*')
+      .eq('id', 1)
       .single();
 
     if (error) throw error;
@@ -29,7 +38,10 @@ exports.handler = async (event) => {
     console.error('Error:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to fetch content' })
+      body: JSON.stringify({ 
+        error: 'Failed to fetch content',
+        details: error.message 
+      })
     };
   }
 }; 

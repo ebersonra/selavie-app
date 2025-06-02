@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Instituto Selavie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .section-card {
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .nav-tabs {
+            margin-bottom: 2rem;
+        }
+        #saveStatus {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar py-3">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2">
+                            <img src="/img/logo-menu/LOGO-6.png" alt="Instituto Selavie" class="img-fluid mb-3">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#hero" data-bs-toggle="tab">
+                                <i class="fas fa-home"></i> Hero
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about" data-bs-toggle="tab">
+                                <i class="fas fa-info-circle"></i> Sobre
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services" data-bs-toggle="tab">
+                                <i class="fas fa-briefcase-medical"></i> Serviços
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#testimonials" data-bs-toggle="tab">
+                                <i class="fas fa-comments"></i> Depoimentos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact" data-bs-toggle="tab">
+                                <i class="fas fa-address-card"></i> Contato
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#social" data-bs-toggle="tab">
+                                <i class="fas fa-share-alt"></i> Redes Sociais
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+                <div id="saveStatus"></div>
+                
+                <div class="tab-content">
+                    <!-- Hero Section -->
+                    <div class="tab-pane fade show active" id="hero">
+                        <h2>Seção Hero</h2>
+                        <div class="card section-card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="heroTitle">Título</label>
+                                    <input type="text" class="form-control" id="heroTitle" name="heroTitle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="heroDescription">Descrição</label>
+                                    <textarea class="form-control" id="heroDescription" name="heroDescription" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="heroButton">Texto do Botão</label>
+                                    <input type="text" class="form-control" id="heroButton" name="heroButton">
+                                </div>
+                                <button class="btn btn-primary" onclick="saveHeroSection()">Salvar Hero</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About Section -->
+                    <div class="tab-pane fade" id="about">
+                        <h2>Seção Sobre</h2>
+                        <div class="card section-card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="aboutTitle">Título</label>
+                                    <input type="text" class="form-control" id="aboutTitle" name="aboutTitle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="aboutParagraph1">Primeiro Parágrafo</label>
+                                    <textarea class="form-control" id="aboutParagraph1" name="aboutParagraph1" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="aboutParagraph2">Segundo Parágrafo</label>
+                                    <textarea class="form-control" id="aboutParagraph2" name="aboutParagraph2" rows="3"></textarea>
+                                </div>
+                                <button class="btn btn-primary" onclick="saveAboutSection()">Salvar Sobre</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Section -->
+                    <div class="tab-pane fade" id="contact">
+                        <h2>Informações de Contato</h2>
+                        <div class="card section-card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="contactAddress">Endereço</label>
+                                    <input type="text" class="form-control" id="contactAddress" name="contactAddress">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactPhone">Telefone</label>
+                                    <input type="text" class="form-control" id="contactPhone" name="contactPhone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Email</label>
+                                    <input type="email" class="form-control" id="contactEmail" name="contactEmail">
+                                </div>
+                                <button class="btn btn-primary" onclick="saveContactInfo()">Salvar Contato</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Section -->
+                    <div class="tab-pane fade" id="social">
+                        <h2>Redes Sociais</h2>
+                        <div class="card section-card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="socialFacebook">Facebook URL</label>
+                                    <input type="url" class="form-control" id="socialFacebook" name="socialFacebook">
+                                </div>
+                                <div class="form-group">
+                                    <label for="socialInstagram">Instagram URL</label>
+                                    <input type="url" class="form-control" id="socialInstagram" name="socialInstagram">
+                                </div>
+                                <div class="form-group">
+                                    <label for="socialYoutube">YouTube URL</label>
+                                    <input type="url" class="form-control" id="socialYoutube" name="socialYoutube">
+                                </div>
+                                <div class="form-group">
+                                    <label for="socialLinkedin">LinkedIn URL</label>
+                                    <input type="url" class="form-control" id="socialLinkedin" name="socialLinkedin">
+                                </div>
+                                <button class="btn btn-primary" onclick="saveSocialLinks()">Salvar Redes Sociais</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/admin.js"></script>
+    <script>
+        // Função para mostrar notificação de status
+        function showSaveStatus(success, message) {
+            const statusDiv = document.getElementById('saveStatus');
+            statusDiv.innerHTML = `
+                <div class="alert alert-${success ? 'success' : 'danger'} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+            setTimeout(() => {
+                const alert = statusDiv.querySelector('.alert');
+                if (alert) {
+                    alert.remove();
+                }
+            }, 3000);
+        }
+
+        // Funções para salvar cada seção
+        async function saveHeroSection() {
+            try {
+                await updateContent('hero', {
+                    title: document.getElementById('heroTitle').value,
+                    description: document.getElementById('heroDescription').value,
+                    ctaButton: document.getElementById('heroButton').value
+                });
+                showSaveStatus(true, 'Seção Hero atualizada com sucesso!');
+            } catch (error) {
+                showSaveStatus(false, 'Erro ao atualizar seção Hero');
+            }
+        }
+
+        async function saveAboutSection() {
+            try {
+                await updateContent('about', {
+                    title: document.getElementById('aboutTitle').value,
+                    paragraph1: document.getElementById('aboutParagraph1').value,
+                    paragraph2: document.getElementById('aboutParagraph2').value
+                });
+                showSaveStatus(true, 'Seção Sobre atualizada com sucesso!');
+            } catch (error) {
+                showSaveStatus(false, 'Erro ao atualizar seção Sobre');
+            }
+        }
+
+        async function saveContactInfo() {
+            try {
+                await updateContactInfo(
+                    document.getElementById('contactAddress').value,
+                    document.getElementById('contactPhone').value,
+                    document.getElementById('contactEmail').value
+                );
+                showSaveStatus(true, 'Informações de contato atualizadas com sucesso!');
+            } catch (error) {
+                showSaveStatus(false, 'Erro ao atualizar informações de contato');
+            }
+        }
+
+        async function saveSocialLinks() {
+            try {
+                await updateSocialLinks({
+                    facebook: document.getElementById('socialFacebook').value,
+                    instagram: document.getElementById('socialInstagram').value,
+                    youtube: document.getElementById('socialYoutube').value,
+                    linkedin: document.getElementById('socialLinkedin').value
+                });
+                showSaveStatus(true, 'Redes sociais atualizadas com sucesso!');
+            } catch (error) {
+                showSaveStatus(false, 'Erro ao atualizar redes sociais');
+            }
+        }
+
+        // Carregar conteúdo atual
+        async function loadCurrentContent() {
+            try {
+                const response = await fetch('/.netlify/functions/get-content');
+                const data = await response.json();
+
+                // Preencher Hero
+                document.getElementById('heroTitle').value = data.hero.title;
+                document.getElementById('heroDescription').value = data.hero.description;
+                document.getElementById('heroButton').value = data.hero.ctaButton;
+
+                // Preencher About
+                document.getElementById('aboutTitle').value = data.about.title;
+                document.getElementById('aboutParagraph1').value = data.about.paragraph1;
+                document.getElementById('aboutParagraph2').value = data.about.paragraph2;
+
+                // Preencher Contato
+                const contactItems = data.footer.columns.contact.items;
+                document.getElementById('contactAddress').value = contactItems[0].text;
+                document.getElementById('contactPhone').value = contactItems[1].text;
+                document.getElementById('contactEmail').value = contactItems[2].text;
+
+                // Preencher Redes Sociais
+                const social = data.footer.social;
+                document.getElementById('socialFacebook').value = social.facebook;
+                document.getElementById('socialInstagram').value = social.instagram;
+                document.getElementById('socialYoutube').value = social.youtube;
+                document.getElementById('socialLinkedin').value = social.linkedin;
+            } catch (error) {
+                console.error('Erro ao carregar conteúdo:', error);
+                showSaveStatus(false, 'Erro ao carregar conteúdo');
+            }
+        }
+
+        // Carregar conteúdo quando a página carregar
+        document.addEventListener('DOMContentLoaded', loadCurrentContent);
+    </script>
+</body>
+</html> 
