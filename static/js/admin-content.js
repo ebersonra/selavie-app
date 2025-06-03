@@ -95,4 +95,127 @@ async function loadCurrentContent() {
             window.location.href = '/login.html';
         }
     }
+}
+
+// Salvar seção Hero
+async function saveHeroSection() {
+    try {
+        await updateContent('hero', {
+            title: document.getElementById('heroTitle').value,
+            description: document.getElementById('heroDescription').value,
+            ctaButton: document.getElementById('heroButton').value
+        });
+        showSaveStatus(true, 'Seção Hero atualizada com sucesso!');
+    } catch (error) {
+        showSaveStatus(false, 'Erro ao atualizar seção Hero');
+    }
+}
+
+// Salvar seção Sobre
+async function saveAboutSection() {
+    try {
+        await updateContent('about', {
+            title: document.getElementById('aboutTitle').value,
+            paragraph1: document.getElementById('aboutParagraph1').value,
+            paragraph2: document.getElementById('aboutParagraph2').value
+        });
+        showSaveStatus(true, 'Seção Sobre atualizada com sucesso!');
+    } catch (error) {
+        showSaveStatus(false, 'Erro ao atualizar seção Sobre');
+    }
+}
+
+// Salvar seção Serviços
+async function saveServicesSection() {
+    try {
+        await updateContent('services', {
+            title: document.getElementById('servicesTitle').value,
+            description: document.getElementById('servicesDescription').value,
+            items: [0, 1, 2].map(index => ({
+                title: document.getElementById(`serviceTitle${index}`).value,
+                description: document.getElementById(`serviceDescription${index}`).value,
+                link: document.getElementById(`serviceLink${index}`).value
+            }))
+        });
+        showSaveStatus(true, 'Seção Serviços atualizada com sucesso!');
+    } catch (error) {
+        showSaveStatus(false, 'Erro ao atualizar seção Serviços');
+    }
+}
+
+// Salvar seção Depoimentos
+async function saveTestimonialsSection() {
+    try {
+        await updateContent('testimonials', {
+            title: document.getElementById('testimonialsTitle').value,
+            description: document.getElementById('testimonialsDescription').value,
+            items: [0, 1, 2].map(index => ({
+                text: document.getElementById(`testimonialText${index}`).value,
+                author: document.getElementById(`testimonialAuthor${index}`).value,
+                role: document.getElementById(`testimonialRole${index}`).value
+            }))
+        });
+        showSaveStatus(true, 'Seção Depoimentos atualizada com sucesso!');
+    } catch (error) {
+        showSaveStatus(false, 'Erro ao atualizar seção Depoimentos');
+    }
+}
+
+// Salvar informações de contato
+async function saveContactInfo() {
+    try {
+        const title = document.getElementById('contactTitle').value;
+        const items = [
+            {
+                icon: document.getElementById('contactAddressIcon').value,
+                text: document.getElementById('contactAddress').value,
+                url: `https://maps.google.com/?q=${encodeURIComponent(document.getElementById('contactAddress').value)}`
+            },
+            {
+                icon: document.getElementById('contactPhoneIcon').value,
+                text: document.getElementById('contactPhone').value,
+                url: `tel:${document.getElementById('contactPhone').value.replace(/\D/g, '')}`
+            },
+            {
+                icon: document.getElementById('contactEmailIcon').value,
+                text: document.getElementById('contactEmail').value,
+                url: `mailto:${document.getElementById('contactEmail').value}`
+            },
+            {
+                icon: document.getElementById('contactHoursIcon').value,
+                text: document.getElementById('contactHours').value,
+                url: "#horarios"
+            }
+        ];
+
+        await updateContent('footer', {
+            columns: {
+                contact: {
+                    title,
+                    items
+                }
+            }
+        });
+        showSaveStatus(true, 'Informações de contato atualizadas com sucesso!');
+    } catch (error) {
+        console.error('Erro ao salvar contato:', error);
+        showSaveStatus(false, 'Erro ao atualizar informações de contato');
+    }
+}
+
+// Salvar links de redes sociais
+async function saveSocialLinks() {
+    try {
+        await updateContent('footer', {
+            social: {
+                facebook: document.getElementById('socialFacebook').value,
+                instagram: document.getElementById('socialInstagram').value,
+                youtube: document.getElementById('socialYoutube').value,
+                linkedin: document.getElementById('socialLinkedin').value
+            }
+        });
+        showSaveStatus(true, 'Redes sociais atualizadas com sucesso!');
+    } catch (error) {
+        showSaveStatus(false, 'Erro ao atualizar redes sociais');
+    }
 } 
