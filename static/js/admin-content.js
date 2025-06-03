@@ -1,9 +1,15 @@
 // Carregar conteúdo atual
 async function loadCurrentContent() {
     try {
+        // Aguardar a inicialização do Supabase se necessário
+        if (typeof window.waitForSupabase === 'function') {
+            await window.waitForSupabase();
+        }
+
         // Verificar se o cliente está inicializado e autenticado
         if (!supabaseClient) {
-            throw new Error('Supabase client not initialized');
+            console.error('Supabase client not initialized');
+            return;
         }
 
         // Verificar sessão
@@ -13,18 +19,20 @@ async function loadCurrentContent() {
             return;
         }
 
-        // Fazer a requisição com o token de autenticação
-        const response = await fetch('/.netlify/functions/get-content', {
-            headers: {
-                'Authorization': `Bearer ${session.access_token}`
-            }
-        });
+        // Fazer a requisição usando o cliente Supabase
+        const { data, error } = await supabaseClient
+            .from('site_content')
+            .select('*')
+            .eq('id', 1)
+            .single();
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        if (error) {
+            throw error;
         }
 
-        const data = await response.json();
+        if (!data) {
+            throw new Error('Nenhum conteúdo encontrado');
+        }
 
         // Preencher Hero
         document.getElementById('heroTitle').value = data.hero.title;
@@ -170,17 +178,25 @@ async function saveContactInfo() {
             throw new Error('Usuário não autenticado');
         }
 
-        const response = await fetch('/.netlify/functions/get-content', {
-            headers: {
-                'Authorization': `Bearer ${session.access_token}`
-            }
-        });
+        // Usar o cliente Supabase diretamente ao invés de fetch
+        const { data, error } = await supabaseClient
+            .from('site_content')
+            .select('footer')
+            .eq('id', 1)
+            .single();
 
-        if (!response.ok) {
-            throw new Error('Falha ao buscar conteúdo atual');
+        if (error) {
+            console.error('Erro ao buscar conteúdo:', error);
+            showSaveStatus(false, 'Erro ao buscar conteúdo');
+            return;
+        }
+        
+        if (!data) {
+            console.error('Conteúdo não encontrado');
+            showSaveStatus(false, 'Conteúdo não encontrado');
+            return;
         }
 
-        const data = await response.json();
         const currentFooter = data.footer;
 
         // Preparar os novos itens de contato
@@ -242,17 +258,25 @@ async function saveSocialLinks() {
             throw new Error('Usuário não autenticado');
         }
 
-        const response = await fetch('/.netlify/functions/get-content', {
-            headers: {
-                'Authorization': `Bearer ${session.access_token}`
-            }
-        });
+        // Usar o cliente Supabase diretamente ao invés de fetch
+        const { data, error } = await supabaseClient
+            .from('site_content')
+            .select('footer')
+            .eq('id', 1)
+            .single();
 
-        if (!response.ok) {
-            throw new Error('Falha ao buscar conteúdo atual');
+        if (error) {
+            console.error('Erro ao buscar conteúdo:', error);
+            showSaveStatus(false, 'Erro ao buscar conteúdo');
+            return;
+        }
+        
+        if (!data) {
+            console.error('Conteúdo não encontrado');
+            showSaveStatus(false, 'Conteúdo não encontrado');
+            return;
         }
 
-        const data = await response.json();
         const currentFooter = data.footer;
 
         // Manter a estrutura completa do footer
@@ -271,6 +295,7 @@ async function saveSocialLinks() {
         await updateContent('footer', updatedFooter);
         showSaveStatus(true, 'Redes sociais atualizadas com sucesso!');
     } catch (error) {
+        console.error('Erro ao salvar redes sociais:', error);
         showSaveStatus(false, 'Erro ao atualizar redes sociais');
     }
 } 

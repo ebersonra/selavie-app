@@ -1,4 +1,22 @@
 let supabaseClient;
+let supabaseInitPromise = null;
+
+// Função para aguardar a inicialização do Supabase
+window.waitForSupabase = async function() {
+    if (supabaseClient) return Promise.resolve();
+    if (supabaseInitPromise) return supabaseInitPromise;
+    
+    supabaseInitPromise = new Promise((resolve) => {
+        const checkInit = setInterval(() => {
+            if (supabaseClient) {
+                clearInterval(checkInit);
+                resolve();
+            }
+        }, 100);
+    });
+    
+    return supabaseInitPromise;
+};
 
 // Inicializar cliente Supabase
 async function initSupabase() {
