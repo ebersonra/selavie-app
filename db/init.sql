@@ -1,9 +1,16 @@
 -- Criar extensão para gerenciar timestamps automaticamente
 create extension if not exists moddatetime schema extensions;
 
+-- Criar extensão para gerar UUIDs
+create extension if not exists "uuid-ossp";
+
+-- Configurar timezone para Brasil
+SET timezone = 'America/Sao_Paulo';
+
 -- Criar tabela para o conteúdo do site
 create table site_content (
-  id bigint primary key,
+  id uuid default uuid_generate_v4(),
+  version bigint not null default 1,
   meta jsonb,
   navigation jsonb,
   whatsapp jsonb,
@@ -13,8 +20,9 @@ create table site_content (
   cta jsonb,
   testimonials jsonb,
   footer jsonb,
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
-  updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+  created_at timestamp with time zone default timezone('America/Sao_Paulo'::text, now()) not null,
+  updated_at timestamp with time zone default timezone('America/Sao_Paulo'::text, now()) not null,
+  primary key (id, version)
 );
 
 -- Criar trigger para atualizar o campo updated_at automaticamente
@@ -22,7 +30,7 @@ create trigger handle_updated_at before update on site_content
   for each row execute procedure moddatetime (updated_at);
 
 -- Inserir conteúdo inicial
-insert into site_content (id, meta, navigation, whatsapp, hero, about, services, cta, testimonials, footer)
+insert into site_content (version, meta, navigation, whatsapp, hero, about, services, cta, testimonials, footer)
 values (
   1,
   -- Meta

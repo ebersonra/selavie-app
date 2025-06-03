@@ -19,11 +19,12 @@ async function loadCurrentContent() {
             return;
         }
 
-        // Fazer a requisição usando o cliente Supabase
+        // Buscar a última versão do conteúdo
         const { data, error } = await supabaseClient
             .from('site_content')
             .select('*')
-            .eq('id', 1)
+            .order('version', { ascending: false })
+            .limit(1)
             .single();
 
         if (error) {
@@ -69,22 +70,20 @@ async function loadCurrentContent() {
         // Preencher Contato
         const contactSection = data.footer.columns.contact;
         if (contactSection) {
-            // Preencher título da seção
             document.getElementById('contactTitle').value = contactSection.title;
-
-            contactSection.items.forEach((item, index) => {
+            contactSection.items.forEach(item => {
                 if (item.icon === 'fa-map-marker-alt') {
-                    document.getElementById(`contactAddress`).value = item.text;
-                    document.getElementById(`contactAddressIcon`).value = item.icon;
+                    document.getElementById('contactAddress').value = item.text;
+                    document.getElementById('contactAddressIcon').value = item.icon;
                 } else if (item.icon === 'fa-phone') {
-                    document.getElementById(`contactPhone`).value = item.text;
-                    document.getElementById(`contactPhoneIcon`).value = item.icon;
+                    document.getElementById('contactPhone').value = item.text;
+                    document.getElementById('contactPhoneIcon').value = item.icon;
                 } else if (item.icon === 'fa-envelope') {
-                    document.getElementById(`contactEmail`).value = item.text;
-                    document.getElementById(`contactEmailIcon`).value = item.icon;
+                    document.getElementById('contactEmail').value = item.text;
+                    document.getElementById('contactEmailIcon').value = item.icon;
                 } else if (item.icon === 'fa-clock') {
-                    document.getElementById(`contactHours`).value = item.text;
-                    document.getElementById(`contactHoursIcon`).value = item.icon;
+                    document.getElementById('contactHours').value = item.text;
+                    document.getElementById('contactHoursIcon').value = item.icon;
                 }
             });
         }
@@ -95,6 +94,7 @@ async function loadCurrentContent() {
         document.getElementById('socialInstagram').value = social.instagram;
         document.getElementById('socialYoutube').value = social.youtube;
         document.getElementById('socialLinkedin').value = social.linkedin;
+
     } catch (error) {
         console.error('Erro ao carregar conteúdo:', error);
         showSaveStatus(false, 'Erro ao carregar conteúdo');
@@ -102,6 +102,62 @@ async function loadCurrentContent() {
         if (error.status === 401) {
             window.location.href = '/login.html';
         }
+    }
+}
+
+// Função auxiliar para atualizar conteúdo
+async function updateContent(section, newContent) {
+    try {
+        // Obter o token de autenticação
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            throw new Error('Usuário não autenticado');
+        }
+
+        // Buscar o conteúdo atual mais recente
+        const { data: currentData, error: fetchError } = await supabaseClient
+            .from('site_content')
+            .select('*')
+            .order('version', { ascending: false })
+            .limit(1)
+            .single();
+
+        if (fetchError) throw fetchError;
+
+        // Preparar o conteúdo atualizado
+        let updatedContent;
+        if (section === 'footer.contact' || section === 'footer.social') {
+            // Para seções do footer, atualizar apenas a parte específica
+            const [parent, child] = section.split('.');
+            updatedContent = {
+                ...currentData,
+                [parent]: {
+                    ...currentData[parent],
+                    [child]: newContent
+                }
+            };
+        } else {
+            // Para outras seções, atualizar diretamente
+            updatedContent = {
+                ...currentData,
+                [section]: newContent
+            };
+        }
+
+        // Criar nova versão
+        const { error: insertError } = await supabaseClient
+            .from('site_content')
+            .insert([{
+                ...updatedContent,
+                version: currentData.version + 1
+            }]);
+
+        if (insertError) throw insertError;
+
+        return { success: true };
+    } catch (error) {
+        console.error('Erro ao atualizar conteúdo:', error);
+        throw error;
     }
 }
 
@@ -172,34 +228,6 @@ async function saveTestimonialsSection() {
 // Salvar informações de contato
 async function saveContactInfo() {
     try {
-        // Primeiro, buscar o conteúdo atual do footer
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (!session) {
-            throw new Error('Usuário não autenticado');
-        }
-
-        // Usar o cliente Supabase diretamente ao invés de fetch
-        const { data, error } = await supabaseClient
-            .from('site_content')
-            .select('footer')
-            .eq('id', 1)
-            .single();
-
-        if (error) {
-            console.error('Erro ao buscar conteúdo:', error);
-            showSaveStatus(false, 'Erro ao buscar conteúdo');
-            return;
-        }
-        
-        if (!data) {
-            console.error('Conteúdo não encontrado');
-            showSaveStatus(false, 'Conteúdo não encontrado');
-            return;
-        }
-
-        const currentFooter = data.footer;
-
-        // Preparar os novos itens de contato
         const title = document.getElementById('contactTitle').value;
         const items = [
             {
@@ -224,24 +252,10 @@ async function saveContactInfo() {
             }
         ];
 
-        // Manter a estrutura completa do footer
-        const updatedFooter = {
-            copyright: currentFooter.copyright,
-            about: currentFooter.about,
-            columns: {
-                ...currentFooter.columns,
-                quickLinks: currentFooter.columns.quickLinks,
-                treatments: currentFooter.columns.treatments,
-                contact: {
-                    title,
-                    items
-                }
-            },
-            social: currentFooter.social
-        };
-
-        // Enviar atualização
-        await updateContent('footer', updatedFooter);
+        await updateContent('footer.contact', {
+            title,
+            items
+        });
         showSaveStatus(true, 'Informações de contato atualizadas com sucesso!');
     } catch (error) {
         console.error('Erro ao salvar contato:', error);
@@ -252,47 +266,12 @@ async function saveContactInfo() {
 // Salvar links de redes sociais
 async function saveSocialLinks() {
     try {
-        // Primeiro, buscar o conteúdo atual do footer
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (!session) {
-            throw new Error('Usuário não autenticado');
-        }
-
-        // Usar o cliente Supabase diretamente ao invés de fetch
-        const { data, error } = await supabaseClient
-            .from('site_content')
-            .select('footer')
-            .eq('id', 1)
-            .single();
-
-        if (error) {
-            console.error('Erro ao buscar conteúdo:', error);
-            showSaveStatus(false, 'Erro ao buscar conteúdo');
-            return;
-        }
-        
-        if (!data) {
-            console.error('Conteúdo não encontrado');
-            showSaveStatus(false, 'Conteúdo não encontrado');
-            return;
-        }
-
-        const currentFooter = data.footer;
-
-        // Manter a estrutura completa do footer
-        const updatedFooter = {
-            copyright: currentFooter.copyright,
-            about: currentFooter.about,
-            columns: currentFooter.columns,
-            social: {
-                facebook: document.getElementById('socialFacebook').value,
-                instagram: document.getElementById('socialInstagram').value,
-                youtube: document.getElementById('socialYoutube').value,
-                linkedin: document.getElementById('socialLinkedin').value
-            }
-        };
-
-        await updateContent('footer', updatedFooter);
+        await updateContent('footer.social', {
+            facebook: document.getElementById('socialFacebook').value,
+            instagram: document.getElementById('socialInstagram').value,
+            youtube: document.getElementById('socialYoutube').value,
+            linkedin: document.getElementById('socialLinkedin').value
+        });
         showSaveStatus(true, 'Redes sociais atualizadas com sucesso!');
     } catch (error) {
         console.error('Erro ao salvar redes sociais:', error);
