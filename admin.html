@@ -150,6 +150,10 @@
                                     <label for="contactEmail">Email</label>
                                     <input type="email" class="form-control" id="contactEmail" name="contactEmail">
                                 </div>
+                                <div class="form-group">
+                                    <label for="contactHours">Horário de Atendimento</label>
+                                    <input type="text" class="form-control" id="contactHours" name="contactHours">
+                                </div>
                                 <button class="btn btn-primary" onclick="saveContactInfo()">Salvar Contato</button>
                             </div>
                         </div>
@@ -470,9 +474,34 @@
 
                 // Preencher Contato
                 const contactItems = data.footer.columns.contact.items;
-                document.getElementById('contactAddress').value = contactItems[0].text;
-                document.getElementById('contactPhone').value = contactItems[1].text;
-                document.getElementById('contactEmail').value = contactItems[2].text;
+                if (contactItems && contactItems.length > 0) {
+                    // Mapeamento de ícones para campos
+                    const iconToField = {
+                        'fa-map-marker-alt': 'contactAddress',
+                        'fa-phone': 'contactPhone',
+                        'fa-envelope': 'contactEmail',
+                        'fa-clock': 'contactHours'
+                    };
+
+                    // Preencher cada campo com base no ícone correspondente
+                    contactItems.forEach(item => {
+                        try {
+                            const fieldId = iconToField[item.icon];
+                            if (fieldId) {
+                                const element = document.getElementById(fieldId);
+                                if (element) {
+                                    element.value = item.text || '';
+                                } else {
+                                    console.warn(`Elemento não encontrado para o campo: ${fieldId}`);
+                                }
+                            } else {
+                                console.warn(`Ícone não mapeado: ${item.icon}`);
+                            }
+                        } catch (error) {
+                            console.warn(`Erro ao preencher campo de contato: ${error.message}`);
+                        }
+                    });
+                }
 
                 // Preencher Redes Sociais
                 const social = data.footer.social;
@@ -556,7 +585,8 @@
                 await updateContactInfo(
                     document.getElementById('contactAddress').value,
                     document.getElementById('contactPhone').value,
-                    document.getElementById('contactEmail').value
+                    document.getElementById('contactEmail').value,
+                    document.getElementById('contactHours').value
                 );
                 showSaveStatus(true, 'Informações de contato atualizadas com sucesso!');
             } catch (error) {

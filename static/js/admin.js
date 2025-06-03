@@ -50,7 +50,7 @@ async function updateTestimonial(index, newTestimonial) {
 }
 
 // 3. Atualizar informações de contato
-async function updateContactInfo(newAddress, newPhone, newEmail) {
+async function updateContactInfo(newAddress, newPhone, newEmail, newHours) {
     try {
         const { data: { session } } = await supabaseClient.auth.getSession();
         if (!session) {
@@ -93,6 +93,11 @@ async function updateContactInfo(newAddress, newPhone, newEmail) {
                             icon: "fa-envelope",
                             text: newEmail,
                             url: `mailto:${newEmail}`
+                        },
+                        {
+                            icon: "fa-clock",
+                            text: newHours,
+                            url: "#horarios"
                         }
                     ]
                 }
@@ -218,7 +223,8 @@ updateTestimonial(0, {
 updateContactInfo(
     "Nova Av. Principal, 456 - São Paulo, SP",
     "(11) 98765-4321",
-    "novo@institutoselavie.com.br"
+    "novo@institutoselavie.com.br",
+    "Segunda à Sexta, 9h às 18h"
 );
 
 updateSocialLinks({
