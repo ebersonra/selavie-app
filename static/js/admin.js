@@ -50,7 +50,7 @@ async function updateTestimonial(index, newTestimonial) {
 }
 
 // 3. Atualizar informações de contato
-async function updateContactInfo(newAddress, newPhone, newEmail, newHours) {
+async function updateContactInfo(title, newAddress, newPhone, newEmail, newHours) {
     try {
         const { data: { session } } = await supabaseClient.auth.getSession();
         if (!session) {
@@ -78,6 +78,7 @@ async function updateContactInfo(newAddress, newPhone, newEmail, newHours) {
                 ...currentFooter.columns,
                 contact: {
                     ...currentFooter.columns.contact,
+                    title: title,
                     items: [
                         {
                             icon: "fa-map-marker-alt",
