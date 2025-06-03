@@ -164,6 +164,26 @@ async function saveTestimonialsSection() {
 // Salvar informações de contato
 async function saveContactInfo() {
     try {
+        // Primeiro, buscar o conteúdo atual do footer
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            throw new Error('Usuário não autenticado');
+        }
+
+        const response = await fetch('/.netlify/functions/get-content', {
+            headers: {
+                'Authorization': `Bearer ${session.access_token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Falha ao buscar conteúdo atual');
+        }
+
+        const data = await response.json();
+        const currentFooter = data.footer;
+
+        // Preparar os novos itens de contato
         const title = document.getElementById('contactTitle').value;
         const items = [
             {
@@ -188,14 +208,24 @@ async function saveContactInfo() {
             }
         ];
 
-        await updateContent('footer', {
+        // Manter a estrutura completa do footer
+        const updatedFooter = {
+            copyright: currentFooter.copyright,
+            about: currentFooter.about,
             columns: {
+                ...currentFooter.columns,
+                quickLinks: currentFooter.columns.quickLinks,
+                treatments: currentFooter.columns.treatments,
                 contact: {
                     title,
                     items
                 }
-            }
-        });
+            },
+            social: currentFooter.social
+        };
+
+        // Enviar atualização
+        await updateContent('footer', updatedFooter);
         showSaveStatus(true, 'Informações de contato atualizadas com sucesso!');
     } catch (error) {
         console.error('Erro ao salvar contato:', error);
@@ -206,14 +236,39 @@ async function saveContactInfo() {
 // Salvar links de redes sociais
 async function saveSocialLinks() {
     try {
-        await updateContent('footer', {
+        // Primeiro, buscar o conteúdo atual do footer
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            throw new Error('Usuário não autenticado');
+        }
+
+        const response = await fetch('/.netlify/functions/get-content', {
+            headers: {
+                'Authorization': `Bearer ${session.access_token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Falha ao buscar conteúdo atual');
+        }
+
+        const data = await response.json();
+        const currentFooter = data.footer;
+
+        // Manter a estrutura completa do footer
+        const updatedFooter = {
+            copyright: currentFooter.copyright,
+            about: currentFooter.about,
+            columns: currentFooter.columns,
             social: {
                 facebook: document.getElementById('socialFacebook').value,
                 instagram: document.getElementById('socialInstagram').value,
                 youtube: document.getElementById('socialYoutube').value,
                 linkedin: document.getElementById('socialLinkedin').value
             }
-        });
+        };
+
+        await updateContent('footer', updatedFooter);
         showSaveStatus(true, 'Redes sociais atualizadas com sucesso!');
     } catch (error) {
         showSaveStatus(false, 'Erro ao atualizar redes sociais');
