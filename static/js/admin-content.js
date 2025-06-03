@@ -125,32 +125,30 @@ async function updateContent(section, newContent) {
         if (fetchError) throw fetchError;
 
         // Preparar o conteúdo atualizado
-        let updatedContent;
+        let newData = { ...currentData };
+        delete newData.id; // Remove o id para que um novo seja gerado
+        delete newData.created_at; // Remove created_at para que seja gerado um novo
+        delete newData.updated_at; // Remove updated_at para que seja gerado um novo
+
         if (section === 'footer.contact' || section === 'footer.social') {
             // Para seções do footer, atualizar apenas a parte específica
             const [parent, child] = section.split('.');
-            updatedContent = {
-                ...currentData,
-                [parent]: {
-                    ...currentData[parent],
-                    [child]: newContent
-                }
+            newData[parent] = {
+                ...newData[parent],
+                [child]: newContent
             };
         } else {
             // Para outras seções, atualizar diretamente
-            updatedContent = {
-                ...currentData,
-                [section]: newContent
-            };
+            newData[section] = newContent;
         }
 
-        // Criar nova versão
+        // Incrementar a versão
+        newData.version = currentData.version + 1;
+
+        // Inserir como um novo registro
         const { error: insertError } = await supabaseClient
             .from('site_content')
-            .insert([{
-                ...updatedContent,
-                version: currentData.version + 1
-            }]);
+            .insert([newData]);
 
         if (insertError) throw insertError;
 
