@@ -81,22 +81,22 @@ async function updateContactInfo(title, newAddress, newPhone, newEmail, newHours
                     title: title,
                     items: [
                         {
-                            icon: "fa-map-marker-alt",
+                            icon: document.getElementById('contactAddressIcon').value,
                             text: newAddress,
                             url: `https://maps.google.com/?q=${encodeURIComponent(newAddress)}`
                         },
                         {
-                            icon: "fa-phone",
+                            icon: document.getElementById('contactPhoneIcon').value,
                             text: newPhone,
                             url: `tel:${newPhone.replace(/\D/g, '')}`
                         },
                         {
-                            icon: "fa-envelope",
+                            icon: document.getElementById('contactEmailIcon').value,
                             text: newEmail,
                             url: `mailto:${newEmail}`
                         },
                         {
-                            icon: "fa-clock",
+                            icon: document.getElementById('contactHoursIcon').value,
                             text: newHours,
                             url: "#horarios"
                         }

@@ -66,17 +66,17 @@ async function loadCurrentContent() {
 
             contactSection.items.forEach((item, index) => {
                 if (item.icon === 'fa-map-marker-alt') {
-                    document.getElementById(`contactAddress${index}`).value = item.text;
-                    document.getElementById(`contactAddress${index}`).icon = item.icon;
+                    document.getElementById(`contactAddress`).value = item.text;
+                    document.getElementById(`contactAddressIcon`).value = item.icon;
                 } else if (item.icon === 'fa-phone') {
-                    document.getElementById(`contactPhone${index}`).value = item.text;
-                    document.getElementById(`contactPhone${index}`).icon = item.icon;
+                    document.getElementById(`contactPhone`).value = item.text;
+                    document.getElementById(`contactPhoneIcon`).value = item.icon;
                 } else if (item.icon === 'fa-envelope') {
-                    document.getElementById(`contactEmail${index}`).value = item.text;
-                    document.getElementById(`contactEmail${index}`).icon = item.icon;
+                    document.getElementById(`contactEmail`).value = item.text;
+                    document.getElementById(`contactEmailIcon`).value = item.icon;
                 } else if (item.icon === 'fa-clock') {
-                    document.getElementById(`contactHours${index}`).value = item.text;
-                    document.getElementById(`contactHours${index}`).icon = item.icon;
+                    document.getElementById(`contactHours`).value = item.text;
+                    document.getElementById(`contactHoursIcon`).value = item.icon;
                 }
             });
         }
