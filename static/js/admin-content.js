@@ -146,9 +146,12 @@ async function updateContent(section, newContent) {
         newData.version = currentData.version + 1;
 
         // Inserir como um novo registro
-        const { error: insertError } = await supabaseClient
+        const { data: resp, error: insertError } = await supabaseClient
             .from('site_content')
-            .insert([newData]);
+            .insert([newData])
+            .select();
+
+        console.info("### Insert result :", resp)
 
         if (insertError) throw insertError;
 
