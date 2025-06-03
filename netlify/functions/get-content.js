@@ -16,27 +16,6 @@ exports.handler = async (event) => {
   }
 
   try {
-    // Verificar autenticação
-    const authHeader = event.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return {
-        statusCode: 401,
-        body: JSON.stringify({ error: 'Unauthorized - No token provided' })
-      };
-    }
-
-    const token = authHeader.split(' ')[1];
-    
-    // Verificar se o token é válido
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-    
-    if (authError || !user) {
-      return {
-        statusCode: 401,
-        body: JSON.stringify({ error: 'Unauthorized - Invalid token' })
-      };
-    }
-
     // Buscar o conteúdo do site
     const { data, error } = await supabase
       .from('site_content')
@@ -62,7 +41,7 @@ exports.handler = async (event) => {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'GET, OPTIONS'
       },
       body: JSON.stringify(data)

@@ -2,6 +2,11 @@
 async function fetchContent() {
     try {
         const response = await fetch('/.netlify/functions/get-content');
+
+        if(!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
         const data = await response.json();
         Object.assign(siteContent, data);
         updatePageContent();
