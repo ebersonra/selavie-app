@@ -1,10 +1,17 @@
 // Função para atualizar uma seção específica do conteúdo
 async function updateContent(section, newContent) {
     try {
+        // Obter o token de autenticação
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            throw new Error('Usuário não autenticado');
+        }
+
         const response = await fetch('/.netlify/functions/update-content', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${session.access_token}`
             },
             body: JSON.stringify({
                 section: section,
@@ -13,16 +20,16 @@ async function updateContent(section, newContent) {
         });
 
         if (!response.ok) {
-            throw new Error('Falha ao atualizar conteúdo');
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Falha ao atualizar conteúdo');
         }
 
         const result = await response.json();
         console.log('Conteúdo atualizado com sucesso:', result);
-        
-        // Atualiza a página com o novo conteúdo
-        updatePageContent();
+        return result;
     } catch (error) {
         console.error('Erro ao atualizar conteúdo:', error);
+        throw error;
     }
 }
 
@@ -44,46 +51,71 @@ async function updateTestimonial(index, newTestimonial) {
 
 // 3. Atualizar informações de contato
 async function updateContactInfo(newAddress, newPhone, newEmail) {
-    await updateContent('footer', {
-        columns: {
-            contact: {
-                items: [
-                    {
-                        icon: "fa-map-marker-alt",
-                        text: newAddress,
-                        url: `https://maps.google.com/?q=${encodeURIComponent(newAddress)}`
-                    },
-                    {
-                        icon: "fa-phone",
-                        text: newPhone,
-                        url: `tel:${newPhone.replace(/\D/g, '')}`
-                    },
-                    {
-                        icon: "fa-envelope",
-                        text: newEmail,
-                        url: `mailto:${newEmail}`
-                    }
-                ]
-            }
+    try {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            throw new Error('Usuário não autenticado');
         }
-    });
+
+        await updateContent('footer', {
+            columns: {
+                contact: {
+                    items: [
+                        {
+                            icon: "fa-map-marker-alt",
+                            text: newAddress,
+                            url: `https://maps.google.com/?q=${encodeURIComponent(newAddress)}`
+                        },
+                        {
+                            icon: "fa-phone",
+                            text: newPhone,
+                            url: `tel:${newPhone.replace(/\D/g, '')}`
+                        },
+                        {
+                            icon: "fa-envelope",
+                            text: newEmail,
+                            url: `mailto:${newEmail}`
+                        }
+                    ]
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Erro ao atualizar informações de contato:', error);
+        throw error;
+    }
 }
 
 // 4. Atualizar links de redes sociais
 async function updateSocialLinks(links) {
-    await updateContent('footer', {
-        social: links
-    });
+    try {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            throw new Error('Usuário não autenticado');
+        }
+
+        await updateContent('footer', {
+            social: links
+        });
+    } catch (error) {
+        console.error('Erro ao atualizar redes sociais:', error);
+        throw error;
+    }
 }
 
 // Função para atualizar seção de serviços
 async function updateServicesSection(servicesData) {
     try {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            throw new Error('Usuário não autenticado');
+        }
+
         const response = await fetch('/.netlify/functions/update-content', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${(await supabaseClient.auth.getSession()).data.session.access_token}`
+                'Authorization': `Bearer ${session.access_token}`
             },
             body: JSON.stringify({
                 section: 'services',
@@ -92,7 +124,8 @@ async function updateServicesSection(servicesData) {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to update services section');
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Falha ao atualizar seção de serviços');
         }
 
         return await response.json();
@@ -105,11 +138,16 @@ async function updateServicesSection(servicesData) {
 // Função para atualizar seção de depoimentos
 async function updateTestimonialsSection(testimonialsData) {
     try {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            throw new Error('Usuário não autenticado');
+        }
+
         const response = await fetch('/.netlify/functions/update-content', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${(await supabaseClient.auth.getSession()).data.session.access_token}`
+                'Authorization': `Bearer ${session.access_token}`
             },
             body: JSON.stringify({
                 section: 'testimonials',
@@ -118,7 +156,8 @@ async function updateTestimonialsSection(testimonialsData) {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to update testimonials section');
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Falha ao atualizar seção de depoimentos');
         }
 
         return await response.json();
