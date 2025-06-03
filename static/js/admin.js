@@ -76,6 +76,58 @@ async function updateSocialLinks(links) {
     });
 }
 
+// Função para atualizar seção de serviços
+async function updateServicesSection(servicesData) {
+    try {
+        const response = await fetch('/.netlify/functions/update-content', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${(await supabaseClient.auth.getSession()).data.session.access_token}`
+            },
+            body: JSON.stringify({
+                section: 'services',
+                content: servicesData
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update services section');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error updating services:', error);
+        throw error;
+    }
+}
+
+// Função para atualizar seção de depoimentos
+async function updateTestimonialsSection(testimonialsData) {
+    try {
+        const response = await fetch('/.netlify/functions/update-content', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${(await supabaseClient.auth.getSession()).data.session.access_token}`
+            },
+            body: JSON.stringify({
+                section: 'testimonials',
+                content: testimonialsData
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update testimonials section');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error updating testimonials:', error);
+        throw error;
+    }
+}
+
 // Exemplo de uso:
 /*
 updateHeroTitle("Novo título da Hero Section");
