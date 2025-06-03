@@ -130,18 +130,9 @@ async function updateContent(section, newContent) {
         delete newData.created_at; // Remove created_at para que seja gerado um novo
         delete newData.updated_at; // Remove updated_at para que seja gerado um novo
 
-        if (section === 'footer.contact' || section === 'footer.social') {
-            // Para seções do footer, atualizar apenas a parte específica
-            const [parent, child] = section.split('.');
-            newData[parent] = {
-                ...newData[parent],
-                [child]: newContent
-            };
-        } else {
-            // Para outras seções, atualizar diretamente
-            newData[section] = newContent;
-        }
-
+        // Para outras seções, atualizar diretamente
+        newData[section] = newContent;
+        
         // Incrementar a versão
         newData.version = currentData.version + 1;
 
@@ -288,12 +279,27 @@ async function saveContactInfo() {
 // Salvar links de redes sociais
 async function saveSocialLinks() {
     try {
-        await updateContent('footer.social', {
-            facebook: document.getElementById('socialFacebook').value,
-            instagram: document.getElementById('socialInstagram').value,
-            youtube: document.getElementById('socialYoutube').value,
-            linkedin: document.getElementById('socialLinkedin').value
-        });
+        const { data: currentData } = await supabaseClient
+            .from('site_content')
+            .select('footer')
+            .order('version', { ascending: false })
+            .limit(1)
+            .single();
+        
+        if(!currentData || !currentData.footer){
+            throw new Error('Não foi possivel obter o footer atual');
+        }
+        const updatedFooter = {
+            ...currentData.footer,
+            social: {
+                facebook: document.getElementById('socialFacebook').value,
+                instagram: document.getElementById('socialInstagram').value,
+                youtube: document.getElementById('socialYoutube').value,
+                linkedin: document.getElementById('socialLinkedin').value
+            }
+        };
+
+        await updateContent('footer', updatedFooter);
         showSaveStatus(true, 'Redes sociais atualizadas com sucesso!');
     } catch (error) {
         console.error('Erro ao salvar redes sociais:', error);
