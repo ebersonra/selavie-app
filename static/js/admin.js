@@ -57,9 +57,27 @@ async function updateContactInfo(newAddress, newPhone, newEmail) {
             throw new Error('Usuário não autenticado');
         }
 
-        await updateContent('footer', {
+        // Primeiro, buscar o conteúdo atual do footer
+        const response = await fetch('/.netlify/functions/get-content', {
+            headers: {
+                'Authorization': `Bearer ${session.access_token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Falha ao buscar conteúdo atual');
+        }
+
+        const data = await response.json();
+        const currentFooter = data.footer;
+
+        // Atualizar apenas a seção de contato mantendo o resto do footer intacto
+        const updatedFooter = {
+            ...currentFooter,
             columns: {
+                ...currentFooter.columns,
                 contact: {
+                    ...currentFooter.columns.contact,
                     items: [
                         {
                             icon: "fa-map-marker-alt",
@@ -79,7 +97,9 @@ async function updateContactInfo(newAddress, newPhone, newEmail) {
                     ]
                 }
             }
-        });
+        };
+
+        await updateContent('footer', updatedFooter);
     } catch (error) {
         console.error('Erro ao atualizar informações de contato:', error);
         throw error;
@@ -94,9 +114,27 @@ async function updateSocialLinks(links) {
             throw new Error('Usuário não autenticado');
         }
 
-        await updateContent('footer', {
-            social: links
+        // Primeiro, buscar o conteúdo atual do footer
+        const response = await fetch('/.netlify/functions/get-content', {
+            headers: {
+                'Authorization': `Bearer ${session.access_token}`
+            }
         });
+
+        if (!response.ok) {
+            throw new Error('Falha ao buscar conteúdo atual');
+        }
+
+        const data = await response.json();
+        const currentFooter = data.footer;
+
+        // Atualizar apenas a seção social mantendo o resto do footer intacto
+        const updatedFooter = {
+            ...currentFooter,
+            social: links
+        };
+
+        await updateContent('footer', updatedFooter);
     } catch (error) {
         console.error('Erro ao atualizar redes sociais:', error);
         throw error;
