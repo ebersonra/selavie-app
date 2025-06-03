@@ -229,6 +229,17 @@ async function saveTestimonialsSection() {
 // Salvar informações de contato
 async function saveContactInfo() {
     try {
+        const { data: currentData } = await supabaseClient
+            .from('site_content')
+            .select('footer')
+            .order('version', { ascending: false })
+            .limit(1)
+            .single();
+
+        if(!currentData || !currentData.footer){
+            throw new Error('Não foi possivel obter o footer atual.')
+        }
+
         const title = document.getElementById('contactTitle').value;
         const items = [
             {
@@ -253,10 +264,20 @@ async function saveContactInfo() {
             }
         ];
 
-        await updateContent('footer.contact', {
-            title,
-            items
-        });
+        const updateFooter = {
+            ...currentData.footer,
+            columns: {
+                ...currentData.footer.columns,
+                contact: {
+                    title,
+                    items
+                }
+            }
+        };
+
+        console.info('#### updateFooter:', updateFooter);
+
+        await updateContent('footer', updateFooter);
         showSaveStatus(true, 'Informações de contato atualizadas com sucesso!');
     } catch (error) {
         console.error('Erro ao salvar contato:', error);
