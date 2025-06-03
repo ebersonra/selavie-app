@@ -3,7 +3,7 @@ const { createClient } = require('@supabase/supabase-js');
 // Inicializa o cliente do Supabase
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY // Usando service role key para acesso admin
+  process.env.SUPABASE_ANON_KEY
 );
 
 exports.handler = async (event) => {
@@ -41,7 +41,8 @@ exports.handler = async (event) => {
     const { data, error } = await supabase
       .from('site_content')
       .select('*')
-      .eq('id', 1)
+      .order('version', { ascending: false })
+      .limit(1)
       .single();
 
     if (error) {
