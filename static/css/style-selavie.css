@@ -57,6 +57,24 @@ header {
     width: 100%;
 }
 
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--secondary);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
 .nav-menu {
     display: flex;
     gap: 30px;
@@ -702,8 +720,39 @@ footer {
     .logo {
         max-width: 150px;
     }
+    .hamburger-menu {
+        display: block;
+    }
     .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 400px;
+        height: 100vh;
+        background-color: var(--primary);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         gap: 20px;
+        transition: right 0.3s ease;
+        padding: 80px 20px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+    .nav-menu.active {
+        right: 0;
+    }
+    .hamburger-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    .header-cta {
+        display: none;
     }
     .hero-content h1 {
         font-size: 48px;
@@ -722,7 +771,8 @@ footer {
 
 @media (max-width: 768px) {
     .nav-menu {
-        display: none;
+        width: 100%;
+        max-width: none;
     }
     .hero-content h1 {
         font-size: 36px;
