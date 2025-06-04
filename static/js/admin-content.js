@@ -37,6 +37,7 @@ async function loadCurrentContent() {
 
         // Preencher Hero
         document.getElementById('heroTitle').value = data.hero.title;
+        document.getElementById('heroSubtitle').value = data.hero.subtitle;
         document.getElementById('heroDescription').value = data.hero.description;
         document.getElementById('heroButton').value = data.hero.ctaButton;
 
@@ -158,6 +159,7 @@ async function saveHeroSection() {
     try {
         await updateContent('hero', {
             title: document.getElementById('heroTitle').value,
+            subtitle: document.getElementById('heroSubtitle').value,
             description: document.getElementById('heroDescription').value,
             ctaButton: document.getElementById('heroButton').value
         });

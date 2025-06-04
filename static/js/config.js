@@ -16,6 +16,7 @@ const siteContent = {
     },
     hero: {
         title: "Tratamento Humanizado para Dependência Química",
+        subtitle: "O Instituto Sélavie oferece tratamentos personalizados em ambiente acolhedor, com equipe multidisciplinar especializada para recuperação efetiva e sustentável.",
         description: "O Instituto Sélavie oferece tratamentos personalizados em ambiente acolhedor, com equipe multidisciplinar especializada para recuperação efetiva e sustentável.",
         ctaButton: "Iniciar recuperação agora"
     },
