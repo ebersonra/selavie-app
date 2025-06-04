@@ -210,28 +210,3 @@ async function updateTestimonialsSection(testimonialsData) {
         throw error;
     }
 }
-
-// Exemplo de uso:
-/*
-updateHeroTitle("Novo título da Hero Section");
-
-updateTestimonial(0, {
-    text: "Novo depoimento aqui",
-    author: "João S.",
-    role: "Paciente recuperado"
-});
-
-updateContactInfo(
-    "Nova Av. Principal, 456 - São Paulo, SP",
-    "(11) 98765-4321",
-    "novo@institutoselavie.com.br",
-    "Segunda à Sexta, 9h às 18h"
-);
-
-updateSocialLinks({
-    facebook: "https://facebook.com/institutoselavie",
-    instagram: "https://instagram.com/institutoselavie",
-    youtube: "https://youtube.com/institutoselavie",
-    linkedin: "https://linkedin.com/company/institutoselavie"
-});
-*/ 

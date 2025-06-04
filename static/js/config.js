@@ -22,7 +22,9 @@ const siteContent = {
     },
     about: {
         title: "Quem Somos",
+        subtitle1: "O Instituto Sélavie oferece tratamentos personalizados em ambiente acolhedor, com equipe multidisciplinar especializada para recuperação efetiva e sustentável.",
         paragraph1: "Fundado com o propósito de oferecer tratamento humanizado e eficaz para dependência química, o Instituto Sélavie integra métodos terapêuticos comprovados com acolhimento personalizado.",
+        subtitle2: "Nossa abordagem multidisciplinar combina psicoterapia, terapia ocupacional, acompanhamento médico e nutricional, práticas integrativas e suporte familiar, visando a recuperação integral do paciente.",
         paragraph2: "Nossa abordagem multidisciplinar combina psicoterapia, terapia ocupacional, acompanhamento médico e nutricional, práticas integrativas e suporte familiar, visando a recuperação integral do paciente.",
         link: "Conheça nossa história"
     },

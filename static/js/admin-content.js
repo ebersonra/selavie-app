@@ -174,8 +174,11 @@ async function saveAboutSection() {
     try {
         await updateContent('about', {
             title: document.getElementById('aboutTitle').value,
+            subtitle1: document.getElementById('aboutSubtitle1').value,
             paragraph1: document.getElementById('aboutParagraph1').value,
-            paragraph2: document.getElementById('aboutParagraph2').value
+            subtitle2: document.getElementById('aboutSubtitle2').value,
+            paragraph2: document.getElementById('aboutParagraph2').value,
+            link: document.getElementById('aboutLink').value
         });
         showSaveStatus(true, 'Seção Sobre atualizada com sucesso!');
     } catch (error) {
