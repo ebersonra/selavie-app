@@ -15,6 +15,7 @@ create table site_content (
   navigation jsonb,
   whatsapp jsonb,
   hero jsonb,
+  pain jsonb,
   about jsonb,
   services jsonb,
   cta jsonb,
@@ -30,7 +31,7 @@ create trigger handle_updated_at before update on site_content
   for each row execute procedure moddatetime (updated_at);
 
 -- Inserir conteúdo inicial
-insert into site_content (version, meta, navigation, whatsapp, hero, about, services, cta, testimonials, footer)
+insert into site_content (version, meta, navigation, whatsapp, hero, pain, about, services, cta, testimonials, footer)
 values (
   1,
   -- Meta
@@ -59,6 +60,60 @@ values (
     "title": "Tratamento Humanizado para Dependência Química",
     "description": "O Instituto Sélavie oferece tratamentos personalizados em ambiente acolhedor, com equipe multidisciplinar especializada para recuperação efetiva e sustentável.",
     "ctaButton": "Iniciar recuperação agora"
+  }'::jsonb,
+
+  -- Pain
+  '{
+    "title": "Identificação e Solução de Dores",
+    "description": "Entendemos suas necessidades e oferecemos soluções personalizadas para cada situação.",
+    "container1": {
+      "title": "Dores Físicas e Emocionais",
+      "cta": {
+        "text": "Agende uma Avaliação",
+        "link": "#contact"
+      },
+      "cards": [
+        {
+          "title": "Ansiedade e Estresse",
+          "description": "Aprenda técnicas eficazes para gerenciar a ansiedade e reduzir o estresse no dia a dia.",
+          "icon": "fa-brain"
+        },
+        {
+          "title": "Dores Crônicas",
+          "description": "Tratamentos especializados para aliviar dores crônicas e melhorar sua qualidade de vida.",
+          "icon": "fa-heart"
+        },
+        {
+          "title": "Desequilíbrio Energético",
+          "description": "Identifique e equilibre seus centros energéticos para uma vida mais harmoniosa.",
+          "icon": "fa-balance-scale"
+        }
+      ]
+    },
+    "container2": {
+      "title": "Soluções e Benefícios",
+      "cta": {
+        "text": "Conheça Nossos Tratamentos",
+        "link": "#services"
+      },
+      "cards": [
+        {
+          "title": "Terapia Individual",
+          "description": "Sessões personalizadas focadas em suas necessidades específicas e objetivos.",
+          "icon": "fa-comments"
+        },
+        {
+          "title": "Grupos de Apoio",
+          "description": "Compartilhe experiências e receba suporte em um ambiente acolhedor e seguro.",
+          "icon": "fa-users"
+        },
+        {
+          "title": "Técnicas Integrativas",
+          "description": "Métodos modernos e tradicionais combinados para resultados mais efetivos.",
+          "icon": "fa-lightbulb"
+        }
+      ]
+    }
   }'::jsonb,
 
   -- About
