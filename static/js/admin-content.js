@@ -44,29 +44,34 @@ async function loadCurrentContent() {
         // Preencher Identificação de Dores
         if (data.pain) {
             document.getElementById('painTitle').value = data.pain.title;
-            document.getElementById('painDescription').value = data.pain.description;
+            document.getElementById('painSubtitle').value = data.pain.subtitle;
             
-            // Container 1
+            // Container 1 - Trauma (Bruna)
             document.getElementById('painContainer1Title').value = data.pain.container1.title;
             document.getElementById('painContainer1CtaText').value = data.pain.container1.cta?.text || '';
             document.getElementById('painContainer1CtaLink').value = data.pain.container1.cta?.link || '';
             
+            // Preencher os 5 cards do container 1
             data.pain.container1.cards.forEach((card, index) => {
-                document.getElementById(`painCard${index}Title`).value = card.title;
-                document.getElementById(`painCard${index}Description`).value = card.description;
-                document.getElementById(`painCard${index}Icon`).value = card.icon;
+                if (index < 5) { // Garantir que só preencha os 5 cards
+                    document.getElementById(`painCard${index}Title`).value = card.title;
+                    document.getElementById(`painCard${index}Description`).value = card.description;
+                    document.getElementById(`painCard${index}Icon`).value = card.icon;
+                }
             });
             
-            // Container 2
+            // Container 2 - Mente acelerada (Gabriela)
             document.getElementById('painContainer2Title').value = data.pain.container2.title;
             document.getElementById('painContainer2CtaText').value = data.pain.container2.cta?.text || '';
             document.getElementById('painContainer2CtaLink').value = data.pain.container2.cta?.link || '';
             
+            // Preencher os 3 cards do container 2
             data.pain.container2.cards.forEach((card, index) => {
-                const cardIndex = index + 3;
-                document.getElementById(`painCard${cardIndex}Title`).value = card.title;
-                document.getElementById(`painCard${cardIndex}Description`).value = card.description;
-                document.getElementById(`painCard${cardIndex}Icon`).value = card.icon;
+                if (index < 3) { // Garantir que só preencha os 3 cards
+                    document.getElementById(`painCard2_${index}Title`).value = card.title;
+                    document.getElementById(`painCard2_${index}Description`).value = card.description;
+                    document.getElementById(`painCard2_${index}Icon`).value = card.icon;
+                }
             });
         }
 
