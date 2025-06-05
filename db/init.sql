@@ -64,52 +64,62 @@ values (
 
   -- Pain
   '{
-    "title": "Identificação e Solução de Dores",
-    "description": "Entendemos suas necessidades e oferecemos soluções personalizadas para cada situação.",
+    "title": "DOR & IDENTIFICAÇÃO",
+    "subtitle": "Identificamos e tratamos suas dores emocionais",
     "container1": {
-      "title": "Dores Físicas e Emocionais",
+      "title": "Trauma (Bruna)",
       "cta": {
-        "text": "Agende uma Avaliação",
-        "link": "#contact"
+        "text": "Agende uma consulta com Bruna",
+        "link": "https://api.whatsapp.com/send?phone=5541999999999&text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20com%20Bruna"
       },
       "cards": [
         {
-          "title": "Ansiedade e Estresse",
-          "description": "Aprenda técnicas eficazes para gerenciar a ansiedade e reduzir o estresse no dia a dia.",
+          "title": "Desconfiança constante",
+          "description": "Você quer se abrir, mas a voz interna insiste: \"E se me ferirem de novo?\"",
           "icon": "fa-brain"
         },
         {
-          "title": "Dores Crônicas",
-          "description": "Tratamentos especializados para aliviar dores crônicas e melhorar sua qualidade de vida.",
+          "title": "Alerta permanente",
+          "description": "Corpo tenso, sono leve, sustos por qualquer barulho, como se o perigo estivesse sempre na porta.",
           "icon": "fa-heart"
         },
         {
-          "title": "Desequilíbrio Energético",
-          "description": "Identifique e equilibre seus centros energéticos para uma vida mais harmoniosa.",
+          "title": "Explosões ou bloqueios",
+          "description": "Raiva que irrompe sem aviso ou congelamento que trava palavras e decisões importantes.",
           "icon": "fa-balance-scale"
+        },
+        {
+          "title": "Memórias intrusivas",
+          "description": "Imagens e sensações do passado que invadem sua mente sem aviso, trazendo dor e desconforto.",
+          "icon": "fa-bolt"
+        },
+        {
+          "title": "Isolamento",
+          "description": "A sensação de que ninguém entende o que você passou, levando ao afastamento das pessoas.",
+          "icon": "fa-moon"
         }
       ]
     },
     "container2": {
-      "title": "Soluções e Benefícios",
+      "title": "Mente acelerada (Gabriela)",
       "cta": {
-        "text": "Conheça Nossos Tratamentos",
-        "link": "#services"
+        "text": "Agende uma consulta com Gabriela",
+        "link": "https://api.whatsapp.com/send?phone=5541999999999&text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20com%20Gabriela"
       },
       "cards": [
         {
-          "title": "Terapia Individual",
-          "description": "Sessões personalizadas focadas em suas necessidades específicas e objetivos.",
+          "title": "Pensamentos acelerados",
+          "description": "Sua mente não para, pulando de um assunto para outro, dificultando o foco e a concentração.",
           "icon": "fa-comments"
         },
         {
-          "title": "Grupos de Apoio",
-          "description": "Compartilhe experiências e receba suporte em um ambiente acolhedor e seguro.",
+          "title": "Preocupação excessiva",
+          "description": "Preocupações constantes com o futuro, criando cenários negativos e aumentando a ansiedade.",
           "icon": "fa-users"
         },
         {
-          "title": "Técnicas Integrativas",
-          "description": "Métodos modernos e tradicionais combinados para resultados mais efetivos.",
+          "title": "Dificuldade de relaxar",
+          "description": "Mesmo em momentos de descanso, seu corpo e mente permanecem tensos e alertas.",
           "icon": "fa-lightbulb"
         }
       ]
