@@ -125,6 +125,16 @@ async function loadCurrentContent() {
         document.getElementById('socialYoutube').value = social.youtube;
         document.getElementById('socialLinkedin').value = social.linkedin;
 
+        // Preencher Navegação
+        if (data.navigation) {
+            document.getElementById('navHome').value = data.navigation.home;
+            document.getElementById('navAbout').value = data.navigation.about;
+            document.getElementById('navServices').value = data.navigation.services;
+            document.getElementById('navTestimonials').value = data.navigation.testimonials;
+            document.getElementById('navContact').value = data.navigation.contact;
+            document.getElementById('navCtaButton').value = data.navigation.ctaButton;
+        }
+
     } catch (error) {
         console.error('Erro ao carregar conteúdo:', error);
         showSaveStatus(false, 'Erro ao carregar conteúdo');
@@ -399,5 +409,22 @@ async function savePainSection() {
         showSaveStatus(true, 'Seção Identificação de Dores atualizada com sucesso!');
     } catch (error) {
         showSaveStatus(false, 'Erro ao atualizar seção Identificação de Dores');
+    }
+}
+
+// Salvar navegação
+async function saveNavigation() {
+    try {
+        await updateContent('navigation', {
+            home: document.getElementById('navHome').value,
+            about: document.getElementById('navAbout').value,
+            services: document.getElementById('navServices').value,
+            testimonials: document.getElementById('navTestimonials').value,
+            contact: document.getElementById('navContact').value,
+            ctaButton: document.getElementById('navCtaButton').value
+        });
+        showSaveStatus(true, 'Menu de navegação atualizado com sucesso!');
+    } catch (error) {
+        showSaveStatus(false, 'Erro ao atualizar menu de navegação');
     }
 } 

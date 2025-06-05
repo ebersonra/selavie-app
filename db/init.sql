@@ -43,10 +43,10 @@ values (
   '{
     "home": "Início",
     "about": "Quem Somos",
-    "services": "Tratamentos",
-    "testimonials": "Depoimentos",
     "contact": "Contato",
-    "ctaButton": "Fale com um especialista"
+    "services": "Tratamentos",
+    "ctaButton": "Fale com um especialista",
+    "testimonials": "Depoimentos"
   }'::jsonb,
 
   -- WhatsApp

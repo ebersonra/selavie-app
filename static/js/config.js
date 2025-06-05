@@ -9,38 +9,90 @@ const siteContent = {
     navigation: {
         home: "Início",
         about: "Quem Somos",
-        services: "Tratamentos",
-        testimonials: "Depoimentos",
         contact: "Contato",
-        ctaButton: "Fale com um especialista"
+        services: "Tratamentos",
+        ctaButton: "Fale com um especialista",
+        testimonials: "Depoimentos"
     },
     hero: {
-        title: "Tratamento Humanizado para Dependência Química",
-        subtitle: "O Instituto Sélavie oferece tratamentos personalizados em ambiente acolhedor, com equipe multidisciplinar especializada para recuperação efetiva e sustentável.",
-        description: "O Instituto Sélavie oferece tratamentos personalizados em ambiente acolhedor, com equipe multidisciplinar especializada para recuperação efetiva e sustentável.",
-        ctaButton: "Iniciar recuperação agora"
+        title: "Quando o corpo vive em alerta ou a mente não desliga, nós cuidamos.",
+        subtitle: "EMDR para traumas • TCC para pensamentos acelerados • Presencial em Curitiba & online para todo o Brasil.",
+        description: "Sessões de 50 min que unem ciência atualizada e acolhimento genuíno para adultos com lembranças dolorosas ou cobranças internas incessantes.",
+        ctaButton: "Quero meu primeiro contato gratuito"
+    },
+    pain: {
+        title: "DOR & IDENTIFICAÇÃO",
+        description: "",
+        container1: {
+            title: "Trauma (Bruna)",
+            cta: {
+                text: "Isso é você? Veja o EMDR",
+                link: ""
+            },
+            cards: [
+                {
+                    title: "Desconfiança constante",
+                    description: "Você quer se abrir, mas a voz interna insiste: \"E se me ferirem de novo?\"",
+                    icon: "fa-brain"
+                },
+                {
+                    title: "Alerta permanente",
+                    description: "Corpo tenso, sono leve, sustos por qualquer barulho, como se o perigo estivesse sempre na porta.",
+                    icon: "fa-heart"
+                },
+                {
+                    title: "Explosões ou bloqueios",
+                    description: "Raiva que irrompe sem aviso ou congelamento que trava palavras e decisões importantes.",
+                    icon: "fa-balance-scale"
+                }
+            ]
+        },
+        container2: {
+            title: "Mente acelerada (Gabriela)",
+            cta: {
+                text: "Isso é você? Veja a TCC",
+                link: ""
+            },
+            cards: [
+                {
+                    title: "",
+                    description: "Pensamentos correm tão rápido que você trava?",
+                    icon: "fa-comments"
+                },
+                {
+                    title: "",
+                    description: "Culpa por reagir \"demais\" em coisas pequenas?",
+                    icon: "fa-users"
+                },
+                {
+                    title: "",
+                    description: "Procrastina porque o medo de falhar paralisa?",
+                    icon: "fa-lightbulb"
+                }
+            ]
+        }
     },
     about: {
-        title: "Quem Somos",
-        subtitle1: "O Instituto Sélavie oferece tratamentos personalizados em ambiente acolhedor, com equipe multidisciplinar especializada para recuperação efetiva e sustentável.",
-        paragraph1: "Fundado com o propósito de oferecer tratamento humanizado e eficaz para dependência química, o Instituto Sélavie integra métodos terapêuticos comprovados com acolhimento personalizado.",
-        subtitle2: "Nossa abordagem multidisciplinar combina psicoterapia, terapia ocupacional, acompanhamento médico e nutricional, práticas integrativas e suporte familiar, visando a recuperação integral do paciente.",
-        paragraph2: "Nossa abordagem multidisciplinar combina psicoterapia, terapia ocupacional, acompanhamento médico e nutricional, práticas integrativas e suporte familiar, visando a recuperação integral do paciente.",
+        title: "QUEM SOMOS",
+        subtitle1: "",
+        subtitle2: "",
+        paragraph1: "Certificada EMDRIA, 800 h em traumas complexos. \"Cada dor merece ser ouvida sem pressa.\"",
+        paragraph2: "Especialista em TCC baseada em evidências. \"Traduzo ciência em passos que cabem no dia a dia.\"",
         link: "Conheça nossa história"
     },
     services: {
-        title: "Nossos Tratamentos",
+        title: "SERVIÇOS",
         description: "Desenvolvemos programas terapêuticos personalizados para cada paciente, considerando suas necessidades específicas e contexto individual.",
         items: [
             {
-                title: "Internação Voluntária",
-                description: "Tratamento intensivo em ambiente acolhedor e seguro, com equipe presente 24 horas para suporte completo durante a recuperação.",
-                link: "Saiba mais"
+                title: "EMDR com Bruna",
+                description: "Seu corpo vive em modo de alerta? O EMDR ajuda o cérebro a ver a lembrança sem pânico.",
+                link: "Agendar com Bruna"
             },
             {
-                title: "Atendimento Ambulatorial",
-                description: "Acompanhamento terapêutico sem internação, ideal para quem precisa manter suas atividades diárias durante o tratamento.",
-                link: "Saiba mais"
+                title: "TCC com Gabriela",
+                description: "Pensamentos acelerados te paralisam? A TCC desmonta crenças de perfeição e cria ações possíveis.",
+                link: "Agendar com Gabriela"
             },
             {
                 title: "Acompanhamento Familiar",
@@ -106,15 +158,15 @@ const siteContent = {
             contact: {
                 title: "Contato",
                 items: [
-                    { 
+                    {
                         icon: "fa-map-marker-alt",
-                        text: "Av. Principal, 123 - São Paulo, SP",
-                        url: "https://maps.google.com/?q=Av. Principal, 123 - São Paulo, SP"
+                        text: "Edifício Attività - Av. Rep. Argentina, 1228 - Vila Izabel, Curitiba - PR, 80620-010",
+                        url: "https://maps.google.com/?q=Edifício Attività - Av. Rep. Argentina, 1228 - Vila Izabel, Curitiba - PR, 80620-010"
                     },
                     {
                         icon: "fa-phone",
-                        text: "(11) 99999-9999",
-                        url: "tel:+5511999999999"
+                        text: "(41) 98733-9999",
+                        url: "tel:41987339999"
                     },
                     {
                         icon: "fa-envelope",
@@ -134,52 +186,6 @@ const siteContent = {
             instagram: "https://www.instagram.com/institutoselavie/",
             youtube: "#",
             linkedin: "#"
-        }
-    },
-    pain: {
-        title: "Identificação e Solução de Dores",
-        description: "Entendemos suas necessidades e oferecemos soluções personalizadas para cada situação.",
-        container1: {
-            title: "Dores Físicas e Emocionais",
-            cta: {
-                text: "Agende uma Avaliação",
-                link: "#contact"
-            },
-            cards: [
-                {
-                    title: "Ansiedade e Estresse",
-                    description: "Aprenda técnicas eficazes para gerenciar a ansiedade e reduzir o estresse no dia a dia."
-                },
-                {
-                    title: "Dores Crônicas",
-                    description: "Tratamentos especializados para aliviar dores crônicas e melhorar sua qualidade de vida."
-                },
-                {
-                    title: "Desequilíbrio Energético",
-                    description: "Identifique e equilibre seus centros energéticos para uma vida mais harmoniosa."
-                }
-            ]
-        },
-        container2: {
-            title: "Soluções e Benefícios",
-            cta: {
-                text: "Conheça Nossos Tratamentos",
-                link: "#services"
-            },
-            cards: [
-                {
-                    title: "Terapia Individual",
-                    description: "Sessões personalizadas focadas em suas necessidades específicas e objetivos."
-                },
-                {
-                    title: "Grupos de Apoio",
-                    description: "Compartilhe experiências e receba suporte em um ambiente acolhedor e seguro."
-                },
-                {
-                    title: "Técnicas Integrativas",
-                    description: "Métodos modernos e tradicionais combinados para resultados mais efetivos."
-                }
-            ]
         }
     }
 }; 

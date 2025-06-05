@@ -26,6 +26,11 @@
                             <img src="/img/logo-menu/LOGO-6.png" alt="Instituto Selavie" class="img-fluid mb-3">
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#navigation" data-bs-toggle="tab">
+                                <i class="fas fa-bars"></i> Navegação
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" href="#hero" data-bs-toggle="tab">
                                 <i class="fas fa-home"></i> Hero
                             </a>
@@ -524,6 +529,40 @@
                                 </div>
 
                                 <button class="btn btn-primary" onclick="saveTestimonialsSection()">Salvar Depoimentos</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Section -->
+                    <div class="tab-pane fade" id="navigation">
+                        <h2>Menu de Navegação</h2>
+                        <div class="card section-card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="navHome">Início</label>
+                                    <input type="text" class="form-control" id="navHome" name="navHome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="navAbout">Quem Somos</label>
+                                    <input type="text" class="form-control" id="navAbout" name="navAbout">
+                                </div>
+                                <div class="form-group">
+                                    <label for="navServices">Tratamentos</label>
+                                    <input type="text" class="form-control" id="navServices" name="navServices">
+                                </div>
+                                <div class="form-group">
+                                    <label for="navTestimonials">Depoimentos</label>
+                                    <input type="text" class="form-control" id="navTestimonials" name="navTestimonials">
+                                </div>
+                                <div class="form-group">
+                                    <label for="navContact">Contato</label>
+                                    <input type="text" class="form-control" id="navContact" name="navContact">
+                                </div>
+                                <div class="form-group">
+                                    <label for="navCtaButton">Texto do Botão CTA</label>
+                                    <input type="text" class="form-control" id="navCtaButton" name="navCtaButton">
+                                </div>
+                                <button class="btn btn-primary" onclick="saveNavigation()">Salvar Navegação</button>
                             </div>
                         </div>
                     </div>
