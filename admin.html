@@ -31,6 +31,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#pain" data-bs-toggle="tab">
+                                <i class="fas fa-heart"></i> Identificação de Dores
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#about" data-bs-toggle="tab">
                                 <i class="fas fa-info-circle"></i> Sobre
                             </a>
@@ -86,6 +91,153 @@
                                     <input type="text" class="form-control" id="heroButton" name="heroButton">
                                 </div>
                                 <button class="btn btn-primary" onclick="saveHeroSection()">Salvar Hero</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pain and Identification Section -->
+                    <div class="tab-pane fade" id="pain">
+                        <h2>Seção Identificação de Dores</h2>
+                        <div class="card section-card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="painTitle">Título da Seção</label>
+                                    <input type="text" class="form-control" id="painTitle" name="painTitle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="painDescription">Descrição da Seção</label>
+                                    <textarea class="form-control" id="painDescription" name="painDescription" rows="2"></textarea>
+                                </div>
+
+                                <hr>
+                                <h4>Container 1 - Dores Físicas e Emocionais</h4>
+                                <div class="form-group">
+                                    <label for="painContainer1Title">Título do Container</label>
+                                    <input type="text" class="form-control" id="painContainer1Title" name="painContainer1Title">
+                                </div>
+
+                                <!-- Card 0 -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5>Card 1</h5>
+                                        <div class="form-group">
+                                            <label for="painCard0Title">Título</label>
+                                            <input type="text" class="form-control" id="painCard0Title" name="painCard0Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard0Description">Descrição</label>
+                                            <textarea class="form-control" id="painCard0Description" name="painCard0Description" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard0Icon">Ícone (classe FontAwesome)</label>
+                                            <input type="text" class="form-control" id="painCard0Icon" name="painCard0Icon" value="fa-brain">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 1 -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5>Card 2</h5>
+                                        <div class="form-group">
+                                            <label for="painCard1Title">Título</label>
+                                            <input type="text" class="form-control" id="painCard1Title" name="painCard1Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard1Description">Descrição</label>
+                                            <textarea class="form-control" id="painCard1Description" name="painCard1Description" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard1Icon">Ícone (classe FontAwesome)</label>
+                                            <input type="text" class="form-control" id="painCard1Icon" name="painCard1Icon" value="fa-heart">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2 -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5>Card 3</h5>
+                                        <div class="form-group">
+                                            <label for="painCard2Title">Título</label>
+                                            <input type="text" class="form-control" id="painCard2Title" name="painCard2Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard2Description">Descrição</label>
+                                            <textarea class="form-control" id="painCard2Description" name="painCard2Description" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard2Icon">Ícone (classe FontAwesome)</label>
+                                            <input type="text" class="form-control" id="painCard2Icon" name="painCard2Icon" value="fa-balance-scale">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <h4>Container 2 - Soluções e Benefícios</h4>
+                                <div class="form-group">
+                                    <label for="painContainer2Title">Título do Container</label>
+                                    <input type="text" class="form-control" id="painContainer2Title" name="painContainer2Title">
+                                </div>
+
+                                <!-- Card 3 -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5>Card 4</h5>
+                                        <div class="form-group">
+                                            <label for="painCard3Title">Título</label>
+                                            <input type="text" class="form-control" id="painCard3Title" name="painCard3Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard3Description">Descrição</label>
+                                            <textarea class="form-control" id="painCard3Description" name="painCard3Description" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard3Icon">Ícone (classe FontAwesome)</label>
+                                            <input type="text" class="form-control" id="painCard3Icon" name="painCard3Icon" value="fa-comments">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 4 -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5>Card 5</h5>
+                                        <div class="form-group">
+                                            <label for="painCard4Title">Título</label>
+                                            <input type="text" class="form-control" id="painCard4Title" name="painCard4Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard4Description">Descrição</label>
+                                            <textarea class="form-control" id="painCard4Description" name="painCard4Description" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard4Icon">Ícone (classe FontAwesome)</label>
+                                            <input type="text" class="form-control" id="painCard4Icon" name="painCard4Icon" value="fa-users">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 5 -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5>Card 6</h5>
+                                        <div class="form-group">
+                                            <label for="painCard5Title">Título</label>
+                                            <input type="text" class="form-control" id="painCard5Title" name="painCard5Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard5Description">Descrição</label>
+                                            <textarea class="form-control" id="painCard5Description" name="painCard5Description" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painCard5Icon">Ícone (classe FontAwesome)</label>
+                                            <input type="text" class="form-control" id="painCard5Icon" name="painCard5Icon" value="fa-lightbulb">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-primary" onclick="savePainSection()">Salvar Identificação de Dores</button>
                             </div>
                         </div>
                     </div>

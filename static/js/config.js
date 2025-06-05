@@ -135,5 +135,43 @@ const siteContent = {
             youtube: "#",
             linkedin: "#"
         }
+    },
+    pain: {
+        title: "Identificação e Solução de Dores",
+        description: "Entendemos suas necessidades e oferecemos soluções personalizadas para cada situação.",
+        container1: {
+            title: "Dores Físicas e Emocionais",
+            cards: [
+                {
+                    title: "Ansiedade e Estresse",
+                    description: "Aprenda técnicas eficazes para gerenciar a ansiedade e reduzir o estresse no dia a dia."
+                },
+                {
+                    title: "Dores Crônicas",
+                    description: "Tratamentos especializados para aliviar dores crônicas e melhorar sua qualidade de vida."
+                },
+                {
+                    title: "Desequilíbrio Energético",
+                    description: "Identifique e equilibre seus centros energéticos para uma vida mais harmoniosa."
+                }
+            ]
+        },
+        container2: {
+            title: "Soluções e Benefícios",
+            cards: [
+                {
+                    title: "Terapia Individual",
+                    description: "Sessões personalizadas focadas em suas necessidades específicas e objetivos."
+                },
+                {
+                    title: "Grupos de Apoio",
+                    description: "Compartilhe experiências e receba suporte em um ambiente acolhedor e seguro."
+                },
+                {
+                    title: "Técnicas Integrativas",
+                    description: "Métodos modernos e tradicionais combinados para resultados mais efetivos."
+                }
+            ]
+        }
     }
 }; 

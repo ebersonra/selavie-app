@@ -41,6 +41,29 @@ async function loadCurrentContent() {
         document.getElementById('heroDescription').value = data.hero.description;
         document.getElementById('heroButton').value = data.hero.ctaButton;
 
+        // Preencher Identificação de Dores
+        if (data.pain) {
+            document.getElementById('painTitle').value = data.pain.title;
+            document.getElementById('painDescription').value = data.pain.description;
+            
+            // Container 1
+            document.getElementById('painContainer1Title').value = data.pain.container1.title;
+            data.pain.container1.cards.forEach((card, index) => {
+                document.getElementById(`painCard${index}Title`).value = card.title;
+                document.getElementById(`painCard${index}Description`).value = card.description;
+                document.getElementById(`painCard${index}Icon`).value = card.icon;
+            });
+            
+            // Container 2
+            document.getElementById('painContainer2Title').value = data.pain.container2.title;
+            data.pain.container2.cards.forEach((card, index) => {
+                const cardIndex = index + 3; // Começa do índice 3
+                document.getElementById(`painCard${cardIndex}Title`).value = card.title;
+                document.getElementById(`painCard${cardIndex}Description`).value = card.description;
+                document.getElementById(`painCard${cardIndex}Icon`).value = card.icon;
+            });
+        }
+
         // Preencher About
         document.getElementById('aboutTitle').value = data.about.title;
         document.getElementById('aboutParagraph1').value = data.about.paragraph1;
@@ -309,5 +332,58 @@ async function saveSocialLinks() {
     } catch (error) {
         console.error('Erro ao salvar redes sociais:', error);
         showSaveStatus(false, 'Erro ao atualizar redes sociais');
+    }
+}
+
+// Salvar seção de Identificação de Dores
+async function savePainSection() {
+    try {
+        await updateContent('pain', {
+            title: document.getElementById('painTitle').value,
+            description: document.getElementById('painDescription').value,
+            container1: {
+                title: document.getElementById('painContainer1Title').value,
+                cards: [
+                    {
+                        title: document.getElementById('painCard0Title').value,
+                        description: document.getElementById('painCard0Description').value,
+                        icon: document.getElementById('painCard0Icon').value
+                    },
+                    {
+                        title: document.getElementById('painCard1Title').value,
+                        description: document.getElementById('painCard1Description').value,
+                        icon: document.getElementById('painCard1Icon').value
+                    },
+                    {
+                        title: document.getElementById('painCard2Title').value,
+                        description: document.getElementById('painCard2Description').value,
+                        icon: document.getElementById('painCard2Icon').value
+                    }
+                ]
+            },
+            container2: {
+                title: document.getElementById('painContainer2Title').value,
+                cards: [
+                    {
+                        title: document.getElementById('painCard3Title').value,
+                        description: document.getElementById('painCard3Description').value,
+                        icon: document.getElementById('painCard3Icon').value
+                    },
+                    {
+                        title: document.getElementById('painCard4Title').value,
+                        description: document.getElementById('painCard4Description').value,
+                        icon: document.getElementById('painCard4Icon').value
+                    },
+                    {
+                        title: document.getElementById('painCard5Title').value,
+                        description: document.getElementById('painCard5Description').value,
+                        icon: document.getElementById('painCard5Icon').value
+                    }
+                ]
+            }
+        });
+        showSaveStatus(true, 'Seção Identificação de Dores atualizada com sucesso!');
+    } catch (error) {
+        showSaveStatus(false, 'Erro ao atualizar seção Identificação de Dores');
     }
 } 
