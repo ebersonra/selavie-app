@@ -141,6 +141,10 @@ const siteContent = {
         description: "Entendemos suas necessidades e oferecemos soluções personalizadas para cada situação.",
         container1: {
             title: "Dores Físicas e Emocionais",
+            cta: {
+                text: "Agende uma Avaliação",
+                link: "#contact"
+            },
             cards: [
                 {
                     title: "Ansiedade e Estresse",
@@ -158,6 +162,10 @@ const siteContent = {
         },
         container2: {
             title: "Soluções e Benefícios",
+            cta: {
+                text: "Conheça Nossos Tratamentos",
+                link: "#services"
+            },
             cards: [
                 {
                     title: "Terapia Individual",

@@ -48,6 +48,9 @@ async function loadCurrentContent() {
             
             // Container 1
             document.getElementById('painContainer1Title').value = data.pain.container1.title;
+            document.getElementById('painContainer1CtaText').value = data.pain.container1.cta?.text || '';
+            document.getElementById('painContainer1CtaLink').value = data.pain.container1.cta?.link || '';
+            
             data.pain.container1.cards.forEach((card, index) => {
                 document.getElementById(`painCard${index}Title`).value = card.title;
                 document.getElementById(`painCard${index}Description`).value = card.description;
@@ -56,8 +59,11 @@ async function loadCurrentContent() {
             
             // Container 2
             document.getElementById('painContainer2Title').value = data.pain.container2.title;
+            document.getElementById('painContainer2CtaText').value = data.pain.container2.cta?.text || '';
+            document.getElementById('painContainer2CtaLink').value = data.pain.container2.cta?.link || '';
+            
             data.pain.container2.cards.forEach((card, index) => {
-                const cardIndex = index + 3; // Começa do índice 3
+                const cardIndex = index + 3;
                 document.getElementById(`painCard${cardIndex}Title`).value = card.title;
                 document.getElementById(`painCard${cardIndex}Description`).value = card.description;
                 document.getElementById(`painCard${cardIndex}Icon`).value = card.icon;
@@ -343,6 +349,10 @@ async function savePainSection() {
             description: document.getElementById('painDescription').value,
             container1: {
                 title: document.getElementById('painContainer1Title').value,
+                cta: {
+                    text: document.getElementById('painContainer1CtaText').value,
+                    link: document.getElementById('painContainer1CtaLink').value
+                },
                 cards: [
                     {
                         title: document.getElementById('painCard0Title').value,
@@ -363,6 +373,10 @@ async function savePainSection() {
             },
             container2: {
                 title: document.getElementById('painContainer2Title').value,
+                cta: {
+                    text: document.getElementById('painContainer2CtaText').value,
+                    link: document.getElementById('painContainer2CtaLink').value
+                },
                 cards: [
                     {
                         title: document.getElementById('painCard3Title').value,

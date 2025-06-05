@@ -840,6 +840,7 @@ footer {
     border-radius: 20px;
     padding: 40px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
 }
 
 .pain-container h3 {
@@ -971,5 +972,44 @@ footer {
     
     .pain-card p {
         font-size: 15px;
+    }
+}
+
+.container-cta {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(10, 52, 42, 0.1);
+}
+
+.mini-cta {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--light);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    border: 2px solid var(--primary);
+}
+
+.mini-cta:hover {
+    background-color: transparent;
+    color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,146,69,0.2);
+}
+
+@media (max-width: 768px) {
+    .container-cta {
+        margin-top: 30px;
+        padding-top: 15px;
+    }
+    
+    .mini-cta {
+        padding: 10px 25px;
+        font-size: 14px;
     }
 }
