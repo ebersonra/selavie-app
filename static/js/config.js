@@ -22,13 +22,10 @@ const siteContent = {
     },
     pain: {
         title: "DOR & IDENTIFICAÇÃO",
+        subtitle: "Identificamos e tratamos suas dores emocionais",
         description: "",
         container1: {
             title: "Trauma (Bruna)",
-            cta: {
-                text: "Isso é você? Veja o EMDR",
-                link: ""
-            },
             cards: [
                 {
                     title: "Desconfiança constante",
@@ -44,8 +41,27 @@ const siteContent = {
                     title: "Explosões ou bloqueios",
                     description: "Raiva que irrompe sem aviso ou congelamento que trava palavras e decisões importantes.",
                     icon: "fa-balance-scale"
+                },
+                {
+                    title: "Trauma",
+                    description: "Experiências difíceis do passado que continuam afetando seu presente",
+                    icon: "fa-bolt"
+                },
+                {
+                    title: "Insônia",
+                    description: "Dificuldade para dormir ou manter o sono, afetando sua qualidade de vida",
+                    icon: "fa-moon"
+                },
+                {
+                    title: "Autoestima",
+                    description: "Dificuldade em se valorizar e reconhecer suas próprias qualidades",
+                    icon: "fa-lightbulb"
                 }
-            ]
+            ],
+            cta: {
+                text: "Agende uma consulta com Bruna",
+                link: "https://api.whatsapp.com/send?phone=5541999999999&text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20com%20Bruna"
+            }
         },
         container2: {
             title: "Mente acelerada (Gabriela)",

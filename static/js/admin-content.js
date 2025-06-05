@@ -351,18 +351,14 @@ async function saveSocialLinks() {
     }
 }
 
-// Salvar seção de Identificação de Dores
-async function savePainSection() {
+// Salvar seção Pain
+async function savePain() {
     try {
         await updateContent('pain', {
             title: document.getElementById('painTitle').value,
-            description: document.getElementById('painDescription').value,
+            subtitle: document.getElementById('painSubtitle').value,
             container1: {
                 title: document.getElementById('painContainer1Title').value,
-                cta: {
-                    text: document.getElementById('painContainer1CtaText').value,
-                    link: document.getElementById('painContainer1CtaLink').value
-                },
                 cards: [
                     {
                         title: document.getElementById('painCard0Title').value,
@@ -378,16 +374,7 @@ async function savePainSection() {
                         title: document.getElementById('painCard2Title').value,
                         description: document.getElementById('painCard2Description').value,
                         icon: document.getElementById('painCard2Icon').value
-                    }
-                ]
-            },
-            container2: {
-                title: document.getElementById('painContainer2Title').value,
-                cta: {
-                    text: document.getElementById('painContainer2CtaText').value,
-                    link: document.getElementById('painContainer2CtaLink').value
-                },
-                cards: [
+                    },
                     {
                         title: document.getElementById('painCard3Title').value,
                         description: document.getElementById('painCard3Description').value,
@@ -397,18 +384,41 @@ async function savePainSection() {
                         title: document.getElementById('painCard4Title').value,
                         description: document.getElementById('painCard4Description').value,
                         icon: document.getElementById('painCard4Icon').value
+                    }
+                ],
+                cta: {
+                    text: document.getElementById('painContainer1CtaText').value,
+                    link: document.getElementById('painContainer1CtaLink').value
+                }
+            },
+            container2: {
+                title: document.getElementById('painContainer2Title').value,
+                cards: [
+                    {
+                        title: document.getElementById('painCard2_0Title').value,
+                        description: document.getElementById('painCard2_0Description').value,
+                        icon: document.getElementById('painCard2_0Icon').value
                     },
                     {
-                        title: document.getElementById('painCard5Title').value,
-                        description: document.getElementById('painCard5Description').value,
-                        icon: document.getElementById('painCard5Icon').value
+                        title: document.getElementById('painCard2_1Title').value,
+                        description: document.getElementById('painCard2_1Description').value,
+                        icon: document.getElementById('painCard2_1Icon').value
+                    },
+                    {
+                        title: document.getElementById('painCard2_2Title').value,
+                        description: document.getElementById('painCard2_2Description').value,
+                        icon: document.getElementById('painCard2_2Icon').value
                     }
-                ]
+                ],
+                cta: {
+                    text: document.getElementById('painContainer2CtaText').value,
+                    link: document.getElementById('painContainer2CtaLink').value
+                }
             }
         });
-        showSaveStatus(true, 'Seção Identificação de Dores atualizada com sucesso!');
+        showSaveStatus(true, 'Seção Pain atualizada com sucesso!');
     } catch (error) {
-        showSaveStatus(false, 'Erro ao atualizar seção Identificação de Dores');
+        showSaveStatus(false, 'Erro ao atualizar seção Pain');
     }
 }
 
