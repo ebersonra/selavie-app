@@ -168,6 +168,24 @@ async function loadCurrentContent() {
             }
         }
 
+        // Preencher TCC
+        if (data.tcc) {
+            document.getElementById('tccTitle').value = data.tcc.title;
+            document.getElementById('tccDescription').value = data.tcc.description;
+            document.getElementById('tccCtaText').value = data.tcc.cta.text;
+            document.getElementById('tccCtaUrl').value = data.tcc.cta.url;
+
+            // Preencher os cards
+            if (data.tcc.cards) {
+                data.tcc.cards.forEach((card, index) => {
+                    if (index < 3) { // Garantir que só preencha os 3 cards
+                        document.getElementById(`tccCard${index}Title`).value = card.title;
+                        document.getElementById(`tccCard${index}Description`).value = card.description;
+                    }
+                });
+            }
+        }
+
     } catch (error) {
         console.error('Erro ao carregar conteúdo:', error);
         showSaveStatus(false, 'Erro ao carregar conteúdo');
@@ -526,5 +544,36 @@ async function saveEmdrSection() {
         showSaveStatus(true, 'Seção EMDR atualizada com sucesso!');
     } catch (error) {
         showSaveStatus(false, 'Erro ao atualizar seção EMDR');
+    }
+}
+
+// Salvar seção TCC
+async function saveTccSection() {
+    try {
+        await updateContent('tcc', {
+            title: document.getElementById('tccTitle').value,
+            description: document.getElementById('tccDescription').value,
+            cards: [
+                {
+                    title: document.getElementById('tccCard0Title').value,
+                    description: document.getElementById('tccCard0Description').value
+                },
+                {
+                    title: document.getElementById('tccCard1Title').value,
+                    description: document.getElementById('tccCard1Description').value
+                },
+                {
+                    title: document.getElementById('tccCard2Title').value,
+                    description: document.getElementById('tccCard2Description').value
+                }
+            ],
+            cta: {
+                text: document.getElementById('tccCtaText').value,
+                url: document.getElementById('tccCtaUrl').value
+            }
+        });
+        showSaveStatus(true, 'Seção TCC atualizada com sucesso!');
+    } catch (error) {
+        showSaveStatus(false, 'Erro ao atualizar seção TCC');
     }
 } 

@@ -46,6 +46,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#tcc" data-bs-toggle="tab">
+                                <i class="fas fa-lightbulb"></i> TCC
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#about" data-bs-toggle="tab">
                                 <i class="fas fa-info-circle"></i> Sobre
                             </a>
@@ -688,6 +693,83 @@
                                     <input type="text" class="form-control" id="emdrCtaUrl" name="emdrCtaUrl">
                                 </div>
                                 <button class="btn btn-primary" onclick="saveEmdrSection()">Salvar EMDR</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TCC Section -->
+                    <div class="tab-pane fade" id="tcc">
+                        <h2>Seção TCC</h2>
+                        <div class="card section-card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="tccTitle">Título</label>
+                                    <input type="text" class="form-control" id="tccTitle" name="tccTitle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tccDescription">Descrição</label>
+                                    <textarea class="form-control" id="tccDescription" name="tccDescription" rows="3"></textarea>
+                                </div>
+
+                                <hr>
+                                <h4>Cards</h4>
+
+                                <!-- Card 1 -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5>Card 1</h5>
+                                        <div class="form-group">
+                                            <label for="tccCard0Title">Título</label>
+                                            <input type="text" class="form-control" id="tccCard0Title" name="tccCard0Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tccCard0Description">Descrição</label>
+                                            <textarea class="form-control" id="tccCard0Description" name="tccCard0Description" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2 -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5>Card 2</h5>
+                                        <div class="form-group">
+                                            <label for="tccCard1Title">Título</label>
+                                            <input type="text" class="form-control" id="tccCard1Title" name="tccCard1Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tccCard1Description">Descrição</label>
+                                            <textarea class="form-control" id="tccCard1Description" name="tccCard1Description" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 3 -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5>Card 3</h5>
+                                        <div class="form-group">
+                                            <label for="tccCard2Title">Título</label>
+                                            <input type="text" class="form-control" id="tccCard2Title" name="tccCard2Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tccCard2Description">Descrição</label>
+                                            <textarea class="form-control" id="tccCard2Description" name="tccCard2Description" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <h4>CTA</h4>
+                                <div class="form-group">
+                                    <label for="tccCtaText">Texto do Botão CTA</label>
+                                    <input type="text" class="form-control" id="tccCtaText" name="tccCtaText">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tccCtaUrl">URL do Botão CTA</label>
+                                    <input type="text" class="form-control" id="tccCtaUrl" name="tccCtaUrl">
+                                </div>
+                                <button class="btn btn-primary" onclick="saveTccSection()">Salvar TCC</button>
                             </div>
                         </div>
                     </div>
