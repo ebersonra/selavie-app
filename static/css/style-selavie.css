@@ -351,7 +351,7 @@ header {
 }
 
 .service-link {
-    color: #007bff;
+    color: var(--primary);
     text-decoration: none;
     font-weight: 600;
     display: inline-block;
@@ -359,7 +359,7 @@ header {
 }
 
 .service-link:hover {
-    color: #0056b3;
+    color: var(--secondary);
 }
 
 /* CTA Section */
