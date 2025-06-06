@@ -263,5 +263,29 @@ insert into site_content (
       "text": "Agende uma sessão de EMDR",
       "url": "https://api.whatsapp.com/send?phone=5541999999999&text=Olá,%20gostaria%20de%20agendar%20uma%20sessão%20de%20EMDR"
     }
+  }'::jsonb,
+
+  -- TCC
+  '{
+    "title": "TCC - Terapia Cognitivo-Comportamental",
+    "description": "A Terapia Cognitivo-Comportamental (TCC) é uma abordagem estruturada e focada em objetivos, que ajuda a identificar e modificar padrões de pensamento e comportamento que causam sofrimento emocional.",
+    "cards": [
+      {
+        "title": "Identificação de Padrões",
+        "description": "Ajudamos você a identificar padrões de pensamento e comportamento que podem estar causando sofrimento emocional."
+      },
+      {
+        "title": "Técnicas Práticas",
+        "description": "Utilizamos técnicas específicas e exercícios práticos para desenvolver habilidades de enfrentamento e resolução de problemas."
+      },
+      {
+        "title": "Resultados Mensuráveis",
+        "description": "Acompanhamento constante do progresso com metas claras e resultados mensuráveis ao longo do tratamento."
+      }
+    ],
+    "cta": {
+      "text": "Agende uma sessão de TCC",
+      "url": "https://api.whatsapp.com/send?phone=5541999999999&text=Olá,%20gostaria%20de%20agendar%20uma%20sessão%20de%20TCC"
+    }
   }'::jsonb
 ); 

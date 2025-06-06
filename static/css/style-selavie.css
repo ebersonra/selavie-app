@@ -1128,3 +1128,131 @@ footer {
         font-size: 14px;
     }
 }
+
+/* TCC Section Styles */
+.tcc {
+    padding: 80px 0;
+    background-color: var(--gray);
+}
+
+.tcc .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.tcc .section-header h2 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.tcc .section-header p {
+    color: var(--light);
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.tcc-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tcc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.tcc-card {
+    background: var(--light);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.tcc-card:hover {
+    transform: translateY(-5px);
+}
+
+.tcc-card .card-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.tcc-card .card-icon i {
+    font-size: 24px;
+    color: var(--light);
+}
+
+.tcc-card h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.tcc-card p {
+    color: var(--light);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.tcc-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.tcc-cta .cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--primary);
+    color: var(--light);
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary);
+}
+
+.tcc-cta .cta-button:hover {
+    background-color: transparent;
+    color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,146,69,0.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .tcc {
+        padding: 60px 0;
+    }
+
+    .tcc .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .tcc .section-header p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .tcc-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .tcc-card {
+        padding: 20px;
+    }
+}
