@@ -236,7 +236,7 @@ async function saveServicesSection() {
         await updateContent('services', {
             title: document.getElementById('servicesTitle').value,
             description: document.getElementById('servicesDescription').value,
-            items: [0, 1, 2].map(index => ({
+            items: [0, 1].map(index => ({
                 title: document.getElementById(`serviceTitle${index}`).value,
                 description: document.getElementById(`serviceDescription${index}`).value,
                 link: document.getElementById(`serviceLink${index}`).value

@@ -148,11 +148,6 @@ values (
         "title": "Atendimento Ambulatorial",
         "description": "Acompanhamento terapêutico sem internação, ideal para quem precisa manter suas atividades diárias durante o tratamento.",
         "link": "Saiba mais"
-      },
-      {
-        "title": "Acompanhamento Familiar",
-        "description": "Suporte terapêutico para familiares, essencial para a recuperação sustentável do paciente e reconstrução dos vínculos afetivos.",
-        "link": "Saiba mais"
       }
     ]
   }'::jsonb,
