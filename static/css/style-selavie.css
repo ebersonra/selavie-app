@@ -339,13 +339,13 @@ header {
 }
 
 .service-content h3 {
-    color: #333;
+    color: var(--primary);
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
 .service-content p {
-    color: #666;
+    color: var(--primary);
     margin-bottom: 1.5rem;
     line-height: 1.6;
 }
