@@ -136,6 +136,10 @@ async function loadCurrentContent() {
             document.getElementById('navHomeUrl').value = data.navigation.home.url;
             document.getElementById('navAbout').value = data.navigation.about.text;
             document.getElementById('navAboutUrl').value = data.navigation.about.url;
+            document.getElementById('navEmdr').value = data.navigation.emdr.text;
+            document.getElementById('navEmdrUrl').value = data.navigation.emdr.url;
+            document.getElementById('navTcc').value = data.navigation.tcc.text;
+            document.getElementById('navTccUrl').value = data.navigation.tcc.url;
             document.getElementById('navServices').value = data.navigation.services.text;
             document.getElementById('navServicesUrl').value = data.navigation.services.url;
             document.getElementById('navTestimonials').value = data.navigation.testimonials.text;
@@ -444,6 +448,14 @@ async function saveNavigation() {
             about: {
                 text: document.getElementById('navAbout').value,
                 url: document.getElementById('navAboutUrl').value
+            },
+            emdr: {
+                text: document.getElementById('navEmdr').value,
+                url: document.getElementById('navEmdrUrl').value
+            },
+            tcc: {
+                text: document.getElementById('navTcc').value,
+                url: document.getElementById('navTccUrl').value
             },
             services: {
                 text: document.getElementById('navServices').value,

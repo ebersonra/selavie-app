@@ -49,21 +49,29 @@ values (
       "text": "Quem Somos",
       "url": "#about"
     },
-    "contact": {
-      "text": "Contato",
-      "url": "#contact"
+    "emdr": {
+      "text": "EMDR",
+      "url": "#emdr"
+    },
+    "tcc": {
+      "text": "TCC",
+      "url": "#tcc"
     },
     "services": {
       "text": "Tratamentos",
       "url": "#services"
     },
-    "ctaButton": {
-      "text": "Fale com um especialista",
-      "url": "#cta-section"
-    },
     "testimonials": {
       "text": "Depoimentos",
       "url": "#testimonials"
+    },
+    "contact": {
+      "text": "Contato",
+      "url": "#contact"
+    },
+    "ctaButton": {
+      "text": "Fale com um especialista",
+      "url": "#cta-section"
     }
   }'::jsonb,
 
