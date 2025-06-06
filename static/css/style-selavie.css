@@ -443,6 +443,129 @@ header {
     transform: translateY(-5px);
 }
 
+/* EMDR Section Styles */
+.emdr {
+    padding: 80px 0;
+    background-color: var(--light-bg);
+}
+
+.emdr .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.emdr .section-header h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.emdr .section-header p {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.emdr-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.emdr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.emdr-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.emdr-card:hover {
+    transform: translateY(-5px);
+}
+
+.emdr-card .card-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.emdr-card .card-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.emdr-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.emdr-card p {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.emdr-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.emdr-cta .cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.emdr-cta .cta-button:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .emdr {
+        padding: 60px 0;
+    }
+
+    .emdr .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .emdr .section-header p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .emdr-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .emdr-card {
+        padding: 20px;
+    }
+}
+
 /* Testimonials Section */
 .testimonials {
     padding: 120px 0;

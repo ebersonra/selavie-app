@@ -150,6 +150,14 @@ async function loadCurrentContent() {
             document.getElementById('navCtaButtonUrl').value = data.navigation.ctaButton.url;
         }
 
+        // Preencher EMDR
+        if (data.emdr) {
+            document.getElementById('emdrTitle').value = data.emdr.title;
+            document.getElementById('emdrDescription').value = data.emdr.description;
+            document.getElementById('emdrCtaText').value = data.emdr.cta.text;
+            document.getElementById('emdrCtaUrl').value = data.emdr.cta.url;
+        }
+
     } catch (error) {
         console.error('Erro ao carregar conteúdo:', error);
         showSaveStatus(false, 'Erro ao carregar conteúdo');
@@ -477,5 +485,22 @@ async function saveNavigation() {
         showSaveStatus(true, 'Menu de navegação atualizado com sucesso!');
     } catch (error) {
         showSaveStatus(false, 'Erro ao atualizar menu de navegação');
+    }
+}
+
+// Salvar seção EMDR
+async function saveEmdrSection() {
+    try {
+        await updateContent('emdr', {
+            title: document.getElementById('emdrTitle').value,
+            description: document.getElementById('emdrDescription').value,
+            cta: {
+                text: document.getElementById('emdrCtaText').value,
+                url: document.getElementById('emdrCtaUrl').value
+            }
+        });
+        showSaveStatus(true, 'Seção EMDR atualizada com sucesso!');
+    } catch (error) {
+        showSaveStatus(false, 'Erro ao atualizar seção EMDR');
     }
 } 

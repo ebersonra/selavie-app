@@ -1,84 +1,54 @@
--- Criar extensão para gerenciar timestamps automaticamente
-create extension if not exists moddatetime schema extensions;
-
--- Criar extensão para gerar UUIDs
+-- Enable UUID extension
 create extension if not exists "uuid-ossp";
+
+-- Enable moddatetime extension
+create extension if not exists moddatetime;
 
 -- Configurar timezone para Brasil
 SET timezone = 'America/Sao_Paulo';
 
--- Criar tabela para o conteúdo do site
+-- Create site_content table
 create table site_content (
-  id uuid default uuid_generate_v4(),
-  version bigint not null default 1,
-  meta jsonb,
-  navigation jsonb,
-  whatsapp jsonb,
-  hero jsonb,
-  pain jsonb,
-  about jsonb,
-  services jsonb,
-  cta jsonb,
-  testimonials jsonb,
-  footer jsonb,
-  created_at timestamp with time zone default timezone('America/Sao_Paulo'::text, now()) not null,
-  updated_at timestamp with time zone default timezone('America/Sao_Paulo'::text, now()) not null,
-  primary key (id, version)
+  id uuid primary key default uuid_generate_v4(),
+  version integer not null,
+  meta jsonb not null,
+  hero jsonb not null,
+  pain jsonb not null,
+  about jsonb not null,
+  services jsonb not null,
+  testimonials jsonb not null,
+  footer jsonb not null,
+  navigation jsonb not null,
+  emdr jsonb not null,
+  tcc jsonb not null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
 );
 
--- Criar trigger para atualizar o campo updated_at automaticamente
+-- Create trigger for updated_at
 create trigger handle_updated_at before update on site_content
   for each row execute procedure moddatetime (updated_at);
 
--- Inserir conteúdo inicial
-insert into site_content (version, meta, navigation, whatsapp, hero, pain, about, services, cta, testimonials, footer)
-values (
+-- Insert initial data
+insert into site_content (
+  version,
+  meta,
+  hero,
+  pain,
+  about,
+  services,
+  testimonials,
+  footer,
+  navigation,
+  emdr,
+  tcc
+) values (
   1,
   -- Meta
   '{
-    "title": "Instituto Selavie - Psicoterapia online e presencial"
-  }'::jsonb,
-
-  -- Navigation
-  '{
-    "home": {
-      "text": "Início",
-      "url": "/"
-    },
-    "about": {
-      "text": "Quem Somos",
-      "url": "#about"
-    },
-    "emdr": {
-      "text": "EMDR",
-      "url": "#emdr"
-    },
-    "tcc": {
-      "text": "TCC",
-      "url": "#tcc"
-    },
-    "services": {
-      "text": "Tratamentos",
-      "url": "#services"
-    },
-    "testimonials": {
-      "text": "Depoimentos",
-      "url": "#testimonials"
-    },
-    "contact": {
-      "text": "Contato",
-      "url": "#contact"
-    },
-    "ctaButton": {
-      "text": "Fale com um especialista",
-      "url": "#cta-section"
-    }
-  }'::jsonb,
-
-  -- WhatsApp
-  '{
-    "url": "https://bit.ly/43Cl99d",
-    "text": "Fale conosco no WhatsApp"
+    "title": "Instituto Sélavie - Psicologia e Saúde Mental",
+    "description": "Atendimento psicológico especializado em EMDR e TCC para ansiedade, depressão e traumas. Agende sua consulta online ou presencial.",
+    "keywords": "psicologia, saúde mental, EMDR, TCC, ansiedade, depressão, trauma, terapia online, psicólogo"
   }'::jsonb,
 
   -- Hero
@@ -268,6 +238,16 @@ values (
       "instagram": "https://www.instagram.com/institutoselavie/",
       "youtube": "#",
       "linkedin": "#"
+    }
+  }'::jsonb,
+
+  -- EMDR
+  '{
+    "title": "EMDR - Terapia de Reprocessamento",
+    "description": "A Terapia EMDR (Eye Movement Desensitization and Reprocessing) é uma abordagem terapêutica eficaz para o tratamento de traumas e transtornos de ansiedade. Através de movimentos oculares bilaterais, ajudamos seu cérebro a processar memórias traumáticas de forma natural e eficiente.",
+    "cta": {
+      "text": "Agende uma sessão de EMDR",
+      "url": "https://api.whatsapp.com/send?phone=5541999999999&text=Olá,%20gostaria%20de%20agendar%20uma%20sessão%20de%20EMDR"
     }
   }'::jsonb
 ); 
