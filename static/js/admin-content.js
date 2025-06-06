@@ -156,6 +156,16 @@ async function loadCurrentContent() {
             document.getElementById('emdrDescription').value = data.emdr.description;
             document.getElementById('emdrCtaText').value = data.emdr.cta.text;
             document.getElementById('emdrCtaUrl').value = data.emdr.cta.url;
+
+            // Preencher os cards
+            if (data.emdr.cards) {
+                data.emdr.cards.forEach((card, index) => {
+                    if (index < 3) { // Garantir que só preencha os 3 cards
+                        document.getElementById(`emdrCard${index}Title`).value = card.title;
+                        document.getElementById(`emdrCard${index}Description`).value = card.description;
+                    }
+                });
+            }
         }
 
     } catch (error) {
@@ -494,6 +504,20 @@ async function saveEmdrSection() {
         await updateContent('emdr', {
             title: document.getElementById('emdrTitle').value,
             description: document.getElementById('emdrDescription').value,
+            cards: [
+                {
+                    title: document.getElementById('emdrCard0Title').value,
+                    description: document.getElementById('emdrCard0Description').value
+                },
+                {
+                    title: document.getElementById('emdrCard1Title').value,
+                    description: document.getElementById('emdrCard1Description').value
+                },
+                {
+                    title: document.getElementById('emdrCard2Title').value,
+                    description: document.getElementById('emdrCard2Description').value
+                }
+            ],
             cta: {
                 text: document.getElementById('emdrCtaText').value,
                 url: document.getElementById('emdrCtaUrl').value

@@ -245,6 +245,20 @@ insert into site_content (
   '{
     "title": "EMDR - Terapia de Reprocessamento",
     "description": "A Terapia EMDR (Eye Movement Desensitization and Reprocessing) é uma abordagem terapêutica eficaz para o tratamento de traumas e transtornos de ansiedade. Através de movimentos oculares bilaterais, ajudamos seu cérebro a processar memórias traumáticas de forma natural e eficiente.",
+    "cards": [
+      {
+        "title": "Reprocessamento Cerebral",
+        "description": "Estimulação bilateral que ajuda o cérebro a processar memórias traumáticas de forma natural e eficiente."
+      },
+      {
+        "title": "Alívio Emocional",
+        "description": "Redução significativa do impacto emocional negativo associado a experiências traumáticas."
+      },
+      {
+        "title": "Resultados Comprovados",
+        "description": "Método reconhecido pela OMS e eficaz no tratamento de TEPT e outros transtornos de ansiedade."
+      }
+    ],
     "cta": {
       "text": "Agende uma sessão de EMDR",
       "url": "https://api.whatsapp.com/send?phone=5541999999999&text=Olá,%20gostaria%20de%20agendar%20uma%20sessão%20de%20EMDR"
