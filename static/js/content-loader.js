@@ -61,6 +61,15 @@ function updatePageContent() {
         }
     });
 
+    // Update navigation links
+    document.querySelectorAll('[data-href]').forEach(element => {
+        const hrefPath = element.getAttribute('data-href');
+        const href = getNestedValue(siteContent, hrefPath);
+        if (href) {
+            element.href = href;
+        }
+    });
+
     // Update WhatsApp button
     document.querySelectorAll('[data-whatsapp]').forEach(element => {
         const property = element.getAttribute('data-whatsapp');

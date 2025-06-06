@@ -41,12 +41,30 @@ values (
 
   -- Navigation
   '{
-    "home": "Início",
-    "about": "Quem Somos",
-    "contact": "Contato",
-    "services": "Tratamentos",
-    "ctaButton": "Fale com um especialista",
-    "testimonials": "Depoimentos"
+    "home": {
+      "text": "Início",
+      "url": "/"
+    },
+    "about": {
+      "text": "Quem Somos",
+      "url": "#about"
+    },
+    "contact": {
+      "text": "Contato",
+      "url": "#contact"
+    },
+    "services": {
+      "text": "Tratamentos",
+      "url": "#services"
+    },
+    "ctaButton": {
+      "text": "Fale com um especialista",
+      "url": "#cta-section"
+    },
+    "testimonials": {
+      "text": "Depoimentos",
+      "url": "#testimonials"
+    }
   }'::jsonb,
 
   -- WhatsApp

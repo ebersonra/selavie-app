@@ -132,12 +132,18 @@ async function loadCurrentContent() {
 
         // Preencher Navegação
         if (data.navigation) {
-            document.getElementById('navHome').value = data.navigation.home;
-            document.getElementById('navAbout').value = data.navigation.about;
-            document.getElementById('navServices').value = data.navigation.services;
-            document.getElementById('navTestimonials').value = data.navigation.testimonials;
-            document.getElementById('navContact').value = data.navigation.contact;
-            document.getElementById('navCtaButton').value = data.navigation.ctaButton;
+            document.getElementById('navHome').value = data.navigation.home.text;
+            document.getElementById('navHomeUrl').value = data.navigation.home.url;
+            document.getElementById('navAbout').value = data.navigation.about.text;
+            document.getElementById('navAboutUrl').value = data.navigation.about.url;
+            document.getElementById('navServices').value = data.navigation.services.text;
+            document.getElementById('navServicesUrl').value = data.navigation.services.url;
+            document.getElementById('navTestimonials').value = data.navigation.testimonials.text;
+            document.getElementById('navTestimonialsUrl').value = data.navigation.testimonials.url;
+            document.getElementById('navContact').value = data.navigation.contact.text;
+            document.getElementById('navContactUrl').value = data.navigation.contact.url;
+            document.getElementById('navCtaButton').value = data.navigation.ctaButton.text;
+            document.getElementById('navCtaButtonUrl').value = data.navigation.ctaButton.url;
         }
 
     } catch (error) {
@@ -431,12 +437,30 @@ async function savePain() {
 async function saveNavigation() {
     try {
         await updateContent('navigation', {
-            home: document.getElementById('navHome').value,
-            about: document.getElementById('navAbout').value,
-            services: document.getElementById('navServices').value,
-            testimonials: document.getElementById('navTestimonials').value,
-            contact: document.getElementById('navContact').value,
-            ctaButton: document.getElementById('navCtaButton').value
+            home: {
+                text: document.getElementById('navHome').value,
+                url: document.getElementById('navHomeUrl').value
+            },
+            about: {
+                text: document.getElementById('navAbout').value,
+                url: document.getElementById('navAboutUrl').value
+            },
+            services: {
+                text: document.getElementById('navServices').value,
+                url: document.getElementById('navServicesUrl').value
+            },
+            testimonials: {
+                text: document.getElementById('navTestimonials').value,
+                url: document.getElementById('navTestimonialsUrl').value
+            },
+            contact: {
+                text: document.getElementById('navContact').value,
+                url: document.getElementById('navContactUrl').value
+            },
+            ctaButton: {
+                text: document.getElementById('navCtaButton').value,
+                url: document.getElementById('navCtaButtonUrl').value
+            }
         });
         showSaveStatus(true, 'Menu de navegação atualizado com sucesso!');
     } catch (error) {
