@@ -446,7 +446,7 @@ header {
 /* EMDR Section Styles */
 .emdr {
     padding: 80px 0;
-    background-color: var(--light-bg);
+    background-color: var(--light);
 }
 
 .emdr .section-header {
@@ -455,13 +455,13 @@ header {
 }
 
 .emdr .section-header h2 {
-    color: var(--primary-color);
+    color: var(--primary);
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
 .emdr .section-header p {
-    color: var(--text-color);
+    color: var(--primary);
     font-size: 1.1rem;
     max-width: 800px;
     margin: 0 auto;
@@ -481,7 +481,7 @@ header {
 }
 
 .emdr-card {
-    background: white;
+    background: var(--light);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -496,7 +496,7 @@ header {
 .emdr-card .card-icon {
     width: 60px;
     height: 60px;
-    background: var(--primary-color);
+    background: var(--primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -506,17 +506,17 @@ header {
 
 .emdr-card .card-icon i {
     font-size: 24px;
-    color: white;
+    color: var(--light);
 }
 
 .emdr-card h3 {
-    color: var(--primary-color);
+    color: var(--primary);
     font-size: 1.5rem;
     margin-bottom: 15px;
 }
 
 .emdr-card p {
-    color: var(--text-color);
+    color: var(--primary);
     font-size: 1rem;
     line-height: 1.6;
 }
@@ -1147,7 +1147,7 @@ footer {
 }
 
 .tcc .section-header p {
-    color: var(--light);
+    color: var(--primary);
     font-size: 1.1rem;
     max-width: 800px;
     margin: 0 auto;
