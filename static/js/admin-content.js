@@ -576,4 +576,144 @@ async function saveTccSection() {
     } catch (error) {
         showSaveStatus(false, 'Erro ao atualizar seção TCC');
     }
-} 
+}
+
+// Carregar histórico de versões
+async function loadHistory() {
+    try {
+        const { data, error } = await supabaseClient
+            .from('site_content')
+            .select('*')
+            .order('version', { ascending: false });
+
+        if (error) throw error;
+
+        const tableBody = document.getElementById('historyTableBody');
+        tableBody.innerHTML = '';
+
+        data.forEach(version => {
+            const row = document.createElement('tr');
+            
+            // Formatar datas
+            const createdDate = new Date(version.created_at).toLocaleString('pt-BR');
+            const updatedDate = new Date(version.updated_at).toLocaleString('pt-BR');
+
+            row.innerHTML = `
+                <td>v${version.version}</td>
+                <td>${createdDate}</td>
+                <td>${updatedDate}</td>
+                <td>
+                    <button class="btn btn-sm btn-info" onclick="viewVersion(${version.version})">
+                        <i class="fas fa-eye"></i> Ver
+                    </button>
+                    <button class="btn btn-sm btn-warning" onclick="restoreVersion(${version.version})">
+                        <i class="fas fa-undo"></i> Restaurar
+                    </button>
+                </td>
+            `;
+            
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Erro ao carregar histórico:', error);
+        showSaveStatus(false, 'Erro ao carregar histórico de versões');
+    }
+}
+
+// Visualizar versão específica
+async function viewVersion(version) {
+    try {
+        const { data, error } = await supabaseClient
+            .from('site_content')
+            .select('*')
+            .eq('version', version)
+            .single();
+
+        if (error) throw error;
+
+        // Criar modal para exibir o conteúdo
+        const modal = document.createElement('div');
+        modal.className = 'modal fade';
+        modal.id = 'versionModal';
+        modal.innerHTML = `
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Versão v${version}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+        const modalInstance = new bootstrap.Modal(modal);
+        modalInstance.show();
+
+        // Remover modal do DOM quando fechado
+        modal.addEventListener('hidden.bs.modal', () => {
+            modal.remove();
+        });
+    } catch (error) {
+        console.error('Erro ao visualizar versão:', error);
+        showSaveStatus(false, 'Erro ao visualizar versão');
+    }
+}
+
+// Restaurar versão específica
+async function restoreVersion(version) {
+    if (!confirm(`Tem certeza que deseja restaurar a versão v${version}?`)) {
+        return;
+    }
+
+    try {
+        const { data: versionData, error: fetchError } = await supabaseClient
+            .from('site_content')
+            .select('*')
+            .eq('version', version)
+            .single();
+
+        if (fetchError) throw fetchError;
+
+        // Criar nova versão com os dados restaurados
+        const newVersion = { ...versionData };
+        delete newVersion.id;
+        delete newVersion.created_at;
+        delete newVersion.updated_at;
+
+        // Incrementar a versão
+        const { data: currentData } = await supabaseClient
+            .from('site_content')
+            .select('version')
+            .order('version', { ascending: false })
+            .limit(1)
+            .single();
+
+        newVersion.version = currentData.version + 1;
+
+        // Inserir nova versão
+        const { error: insertError } = await supabaseClient
+            .from('site_content')
+            .insert([newVersion]);
+
+        if (insertError) throw insertError;
+
+        showSaveStatus(true, 'Versão restaurada com sucesso!');
+        loadHistory(); // Recarregar histórico
+        loadCurrentContent(); // Recarregar conteúdo atual
+    } catch (error) {
+        console.error('Erro ao restaurar versão:', error);
+        showSaveStatus(false, 'Erro ao restaurar versão');
+    }
+}
+
+// Adicionar evento para carregar histórico quando a aba for aberta
+document.addEventListener('DOMContentLoaded', function() {
+    const historyTab = document.querySelector('a[href="#history"]');
+    historyTab.addEventListener('shown.bs.tab', function() {
+        loadHistory();
+    });
+}); 
