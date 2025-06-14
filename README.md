@@ -10,16 +10,24 @@ O website do Instituto Selavie é uma plataforma digital moderna e responsiva qu
 
 ```
 selavie-app/
-├── static/           # Arquivos estáticos (JS, CSS, imagens)
+├── static/           # Arquivos estáticos
+│   ├── js/          # Scripts JavaScript
+│   └── css/         # Estilos CSS
 ├── netlify/          # Funções serverless do Netlify
 ├── db/              # Scripts e configurações do banco de dados
-├── sql/             # Queries SQL
+│   ├── v21/         # Migrações do banco de dados (versão 21)
+│   ├── v17/         # Migrações do banco de dados (versão 17)
+│   ├── v13/         # Migrações do banco de dados (versão 13)
+│   └── init.sql     # Script de inicialização do banco
+├── sql/             # Queries SQL adicionais
 ├── img/             # Imagens do site
 ├── fonts/           # Fontes utilizadas
 ├── index.html       # Página principal
 ├── admin.html       # Painel administrativo
 ├── login.html       # Página de login
-└── netlify.toml     # Configuração do Netlify
+├── netlify.toml     # Configuração do Netlify
+├── package.json     # Dependências e scripts do Node.js
+└── .gitignore      # Arquivos ignorados pelo Git
 ```
 
 ## 🌟 Características Principais
@@ -38,6 +46,7 @@ selavie-app/
 - HTML5
 - CSS3
 - JavaScript
+- Node.js
 - Supabase (Banco de dados)
 - Netlify (Hospedagem e funções serverless)
 - Font Awesome (para ícones)
@@ -170,6 +179,12 @@ npm install
 4. Para desenvolvimento local:
 ```bash
 netlify dev
+```
+
+5. Para executar o projeto em produção:
+```bash
+npm run build
+netlify deploy --prod
 ```
 
 ## 📞 Contato
