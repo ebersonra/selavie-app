@@ -27,13 +27,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
-    - name: Configure npm
-      run: |
-        npm config set ignore-scripts true
-        npm config set platform=linux
-        npm config set arch=x64
-    
     - name: Install dependencies
+      env:
+        npm_config_ignore_scripts: true
+        npm_config_platform: linux
+        npm_config_arch: x64
       run: npm ci --no-optional
     
     - name: Build
