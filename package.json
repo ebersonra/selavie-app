@@ -19,7 +19,5 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.8"
-  },
-  "os": ["linux", "darwin"],
-  "cpu": ["x64", "arm64"]
+  }
 }
