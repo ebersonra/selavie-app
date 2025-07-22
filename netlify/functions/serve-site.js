@@ -9,6 +9,8 @@ const supabase = createClient(
 
 exports.handler = async (event) => {
   const url = event.path || '/';
+  const host = event.headers['host'] || '';
+
   // Não redireciona admin
   if (url.startsWith('/admin')) {
     return {
@@ -32,7 +34,19 @@ exports.handler = async (event) => {
   }
 
   const isComingSoon = data && data.value === 'true';
-  const filePath = isComingSoon ? 'coming-soon.html' : 'index.html';
+  const isMainDomain = host === 'institutoselavie.com.br' || host === 'www.institutoselavie.com.br';
+
+  let filePath = 'index.html'; // padrão
+
+  if (isMainDomain && isComingSoon) {
+    filePath = 'coming-soon.html';
+  }
+
+  // Se for Netlify preview, sempre mostra o site normal
+  if (isPreviewEnv(host)) {
+    filePath = 'index.html';
+  }
+
   const absPath = path.join(__dirname, '../../', filePath);
 
   try {
@@ -48,4 +62,8 @@ exports.handler = async (event) => {
       body: 'Erro ao servir página.'
     };
   }
-}; 
+};
+
+function isPreviewEnv(host) {
+  return ['institutoselavie.netlify.app','localhost','127.0.0.1'].some(domain => host.includes(domain));
+}

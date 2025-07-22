@@ -6,6 +6,8 @@ const supabase = createClient(
 );
 
 exports.handler = async (event) => {
+  const host = event.headers['host'] || '';
+
   if (event.httpMethod !== 'GET') {
     return {
       statusCode: 405,
@@ -27,9 +29,15 @@ exports.handler = async (event) => {
 
     // Monta objeto { key: value }
     const params = {};
-    data.forEach(row => {
-      params[row.key] = row.value;
-    });
+    if (isPreviewEnv(host)) {
+      data.forEach(row => {
+        params[row.key] = 'false';
+      });
+    } else {
+      data.forEach(row => {
+        params[row.key] = row.value;
+      });
+    }
 
     return {
       statusCode: 200,
@@ -47,4 +55,8 @@ exports.handler = async (event) => {
       body: JSON.stringify({ error: 'Unexpected error', details: err.message })
     };
   }
-}; 
+};
+
+function isPreviewEnv(host) {
+  return ['institutoselavie.netlify.app','localhost','127.0.0.1'].some(domain => host.includes(domain));
+}
