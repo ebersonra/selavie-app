@@ -717,3 +717,59 @@ document.addEventListener('DOMContentLoaded', function() {
         loadHistory();
     });
 }); 
+
+// --- COMING SOON PARAM ---
+async function loadComingSoonParam() {
+    await window.waitForSupabase();
+    const { data, error } = await supabaseClient
+        .from('site_parameters')
+        .select('*')
+        .eq('key', 'coming_soon')
+        .single();
+    if (error) {
+        console.error('Erro ao buscar parâmetro coming_soon:', error);
+        return false;
+    }
+    return data && data.value === 'true';
+}
+
+async function saveComingSoonParam(isActive) {
+    await window.waitForSupabase();
+    // Busca o parâmetro existente
+    const { data, error } = await supabaseClient
+        .from('site_parameters')
+        .select('*')
+        .eq('key', 'coming_soon')
+        .single();
+    if (error) {
+        showSaveStatus(false, 'Erro ao buscar parâmetro coming_soon');
+        return;
+    }
+    // Atualiza o valor
+    const { error: updateError } = await supabaseClient
+        .from('site_parameters')
+        .update({ value: isActive ? 'true' : 'false', updated_at: new Date().toISOString() })
+        .eq('id', data.id);
+    if (updateError) {
+        showSaveStatus(false, 'Erro ao salvar modo Coming Soon');
+    } else {
+        showSaveStatus(true, 'Modo Coming Soon atualizado!');
+    }
+}
+
+function setupComingSoonToggle() {
+    const toggle = document.getElementById('comingSoonToggle');
+    const status = document.getElementById('comingSoonStatus');
+    if (!toggle) return;
+    loadComingSoonParam().then(isActive => {
+        toggle.checked = isActive;
+        status.textContent = isActive ? 'Ativo' : 'Desativado';
+    });
+    toggle.addEventListener('change', async function() {
+        await saveComingSoonParam(toggle.checked);
+        status.textContent = toggle.checked ? 'Ativo' : 'Desativado';
+    });
+}
+
+// Chamar setupComingSoonToggle ao carregar o painel
+window.addEventListener('DOMContentLoaded', setupComingSoonToggle); 
