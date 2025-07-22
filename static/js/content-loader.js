@@ -127,5 +127,24 @@ function updatePageContent() {
     });
 }
 
-// Call fetchContent when the DOM is loaded
-document.addEventListener('DOMContentLoaded', fetchContent); 
+// Novo: Checa o modo coming soon antes de buscar conteúdo
+async function checkComingSoonAndFetchContent() {
+    try {
+        const response = await fetch('/.netlify/functions/get-site-parameters');
+        if (!response.ok) {
+            throw new Error('Erro ao buscar parâmetros do site');
+        }
+        const params = await response.json();
+        if (params && params.coming_soon === 'true') {
+            window.location.href = '/coming-soon.html';
+            return;
+        }
+        fetchContent();
+    } catch (err) {
+        console.error('Erro ao consultar parâmetros globais:', err);
+        fetchContent();
+    }
+}
+
+// Substitua o evento DOMContentLoaded:
+document.addEventListener('DOMContentLoaded', checkComingSoonAndFetchContent); 
