@@ -28,11 +28,7 @@ jobs:
         cache: 'npm'
     
     - name: Install dependencies
-      env:
-        npm_config_ignore_scripts: true
-        npm_config_platform: linux
-        npm_config_arch: x64
-      run: npm ci --no-optional
+      run: npm ci --omit=optional
     
     - name: Build
       run: npm run build --if-present
