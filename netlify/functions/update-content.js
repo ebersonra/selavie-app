@@ -3,7 +3,7 @@ const { createClient } = require('@supabase/supabase-js');
 // Inicializa o cliente do Supabase
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
+  process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY
 );
 
 exports.handler = async (event) => {
@@ -16,6 +16,23 @@ exports.handler = async (event) => {
   }
 
   try {
+    const authHeader = event.headers.authorization || event.headers.Authorization;
+    const token = authHeader && authHeader.replace('Bearer ', '');
+    if (!token) {
+      return {
+        statusCode: 401,
+        body: JSON.stringify({ error: 'Unauthorized' })
+      };
+    }
+
+    const { data: authData, error: authError } = await supabase.auth.getUser(token);
+    if (authError || !authData) {
+      return {
+        statusCode: 401,
+        body: JSON.stringify({ error: 'Invalid token' })
+      };
+    }
+
     const { section, content } = JSON.parse(event.body);
 
     if (!section || !content) {
