@@ -1,3 +1,6 @@
+// Initialize siteContent with fallback data from config.js
+let siteContent = window.siteContent || {};
+
 // Fetch content from database
 async function fetchContent() {
     try {
@@ -8,11 +11,13 @@ async function fetchContent() {
         }
         
         const data = await response.json();
-        Object.assign(siteContent, data);
+        // Merge database content with fallback content
+        siteContent = { ...siteContent, ...data };
         updatePageContent();
     } catch (error) {
         console.error('Error fetching content:', error);
         // Use fallback content from config.js if fetch fails
+        console.log('Using fallback content from config.js');
         updatePageContent();
     }
 }
@@ -127,7 +132,7 @@ function updatePageContent() {
     });
 }
 
-// Novo: Checa o modo coming soon antes de buscar conteúdo
+// Checa o modo coming soon antes de buscar conteúdo
 async function checkComingSoonAndFetchContent() {
     try {
         const response = await fetch('/.netlify/functions/get-site-parameters');
@@ -141,10 +146,11 @@ async function checkComingSoonAndFetchContent() {
         }
         fetchContent();
     } catch (err) {
-        console.error('Erro ao consultar parâmetros globais:', err);
+        console.warn('Funções Netlify não disponíveis (modo desenvolvimento local):', err.message);
+        // Quando não há acesso às funções Netlify, usar conteúdo local
         fetchContent();
     }
 }
 
-// Substitua o evento DOMContentLoaded:
+// Initialize content loading
 document.addEventListener('DOMContentLoaded', checkComingSoonAndFetchContent); 

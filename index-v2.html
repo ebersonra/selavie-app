@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-content="meta.title"></title>
+    <meta name="description" data-content="meta.description">
+    
+    <!-- CSS -->
+    <link href="/static/css/style-selavie-v2.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="/img/favicon/cropped-ICONE-1.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Header com navegação fixa -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="/img/logo-menu/LOGO-6.png" alt="Instituto Selavie">
+                </div>
+                
+                <nav class="nav-menu" id="navMenu">
+                    <a href="#" class="nav-link" data-content="navigation.services.text" data-href="navigation.services.url"></a>
+                    <a href="#" class="nav-link" data-content="navigation.about.text" data-href="navigation.about.url"></a>
+                    <a href="#" class="nav-link" data-content="navigation.contact.text" data-href="navigation.contact.url"></a>
+                    <a href="#" class="nav-link" data-content="navigation.testimonials.text" data-href="navigation.testimonials.url"></a>
+                    <a href="#" class="nav-link" data-content="navigation.faq.text" data-href="navigation.faq.url"></a>
+                </nav>
+                
+                <a href="#" class="header-cta" data-content="navigation.ctaButton.text" data-href="navigation.ctaButton.url"></a>
+                
+                <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Hero -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-content="hero.title"></h1>
+                <h2 data-content="hero.subtitle"></h2>
+                <p data-content="hero.description"></p>
+                <a href="#" class="cta-button" data-content="hero.ctaButton" data-href="hero.ctaUrl"></a>
+                
+                <div class="professionals-highlight">
+                    <div class="professional-card" data-professional="0">
+                        <img src="/img/about/banner_bruna_gabriela_selavie_01.png" data-alt="professionals.0.name">
+                        <h3 data-content="professionals.0.name"></h3>
+                        <p data-content="professionals.0.specialty"></p>
+                    </div>
+                    <div class="professional-card" data-professional="1">
+                        <img src="/img/about/banner_bruna_gabriela_selavie_01.png" data-alt="professionals.1.name">
+                        <h3 data-content="professionals.1.name"></h3>
+                        <p data-content="professionals.1.specialty"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Serviços -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-content="services.title"></h2>
+                <p data-content="services.description"></p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-service="0">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-content="services.items.0.title"></h3>
+                        <p data-content="services.items.0.description"></p>
+                        <a href="#" class="service-link" data-content="services.items.0.link" data-href="services.items.0.url"></a>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-service="1">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-content="services.items.1.title"></h3>
+                        <p data-content="services.items.1.description"></p>
+                        <a href="#" class="service-link" data-content="services.items.1.link" data-href="services.items.1.url"></a>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-service="2">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-content="services.items.2.title"></h3>
+                        <p data-content="services.items.2.description"></p>
+                        <a href="#" class="service-link" data-content="services.items.2.link" data-href="services.items.2.url"></a>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-service="3">
+                    <div class="service-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-content="services.items.3.title"></h3>
+                        <p data-content="services.items.3.description"></p>
+                        <a href="#" class="service-link" data-content="services.items.3.link" data-href="services.items.3.url"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Exclusividade -->
+    <section class="exclusivity" id="quem-somos">
+        <div class="container">
+            <div class="exclusivity-content">
+                <h2 data-content="exclusivity.title"></h2>
+                <p data-content="exclusivity.description"></p>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-item" data-benefit="0">
+                        <i class="fas fa-certificate"></i>
+                        <h3 data-content="exclusivity.benefits.0.title"></h3>
+                        <p data-content="exclusivity.benefits.0.description"></p>
+                    </div>
+                    <div class="benefit-item" data-benefit="1">
+                        <i class="fas fa-clock"></i>
+                        <h3 data-content="exclusivity.benefits.1.title"></h3>
+                        <p data-content="exclusivity.benefits.1.description"></p>
+                    </div>
+                    <div class="benefit-item" data-benefit="2">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3 data-content="exclusivity.benefits.2.title"></h3>
+                        <p data-content="exclusivity.benefits.2.description"></p>
+                    </div>
+                    <div class="benefit-item" data-benefit="3">
+                        <i class="fas fa-star"></i>
+                        <h3 data-content="exclusivity.benefits.3.title"></h3>
+                        <p data-content="exclusivity.benefits.3.description"></p>
+                    </div>
+                </div>
+                
+                <a href="#" class="cta-button" data-content="exclusivity.ctaButton" data-href="exclusivity.ctaUrl"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-content="faq.title"></h2>
+                <p data-content="faq.description"></p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item" data-faq="0">
+                    <div class="faq-question">
+                        <h3 data-content="faq.items.0.question"></h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-content="faq.items.0.answer"></p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-faq="1">
+                    <div class="faq-question">
+                        <h3 data-content="faq.items.1.question"></h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-content="faq.items.1.answer"></p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-faq="2">
+                    <div class="faq-question">
+                        <h3 data-content="faq.items.2.question"></h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-content="faq.items.2.answer"></p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-faq="3">
+                    <div class="faq-question">
+                        <h3 data-content="faq.items.3.question"></h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-content="faq.items.3.answer"></p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-faq="4">
+                    <div class="faq-question">
+                        <h3 data-content="faq.items.4.question"></h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-content="faq.items.4.answer"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Agendamento -->
+    <section class="booking" id="agendar">
+        <div class="container">
+            <div class="booking-content">
+                <h2 data-content="booking.title"></h2>
+                <p data-content="booking.description"></p>
+                
+                <div class="booking-benefits">
+                    <div class="booking-benefit" data-booking-benefit="0">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3 data-content="booking.benefits.0.title"></h3>
+                        <p data-content="booking.benefits.0.description"></p>
+                    </div>
+                    <div class="booking-benefit" data-booking-benefit="1">
+                        <i class="fas fa-video"></i>
+                        <h3 data-content="booking.benefits.1.title"></h3>
+                        <p data-content="booking.benefits.1.description"></p>
+                    </div>
+                    <div class="booking-benefit" data-booking-benefit="2">
+                        <i class="fas fa-heart"></i>
+                        <h3 data-content="booking.benefits.2.title"></h3>
+                        <p data-content="booking.benefits.2.description"></p>
+                    </div>
+                </div>
+                
+                <a href="#" class="booking-cta" data-content="booking.ctaButton" data-href="booking.ctaUrl" target="_blank"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Depoimentos -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-content="testimonials.title"></h2>
+                <p data-content="testimonials.description"></p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-testimonial="0">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text" data-content="testimonials.items.0.text"></p>
+                    <div class="testimonial-author-container">
+                        <div class="testimonial-avatar" data-content="testimonials.items.0.initials"></div>
+                        <div class="testimonial-author-info">
+                            <h4 data-content="testimonials.items.0.author"></h4>
+                            <p data-content="testimonials.items.0.role"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-testimonial="1">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text" data-content="testimonials.items.1.text"></p>
+                    <div class="testimonial-author-container">
+                        <div class="testimonial-avatar" data-content="testimonials.items.1.initials"></div>
+                        <div class="testimonial-author-info">
+                            <h4 data-content="testimonials.items.1.author"></h4>
+                            <p data-content="testimonials.items.1.role"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-testimonial="2">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text" data-content="testimonials.items.2.text"></p>
+                    <div class="testimonial-author-container">
+                        <div class="testimonial-avatar" data-content="testimonials.items.2.initials"></div>
+                        <div class="testimonial-author-info">
+                            <h4 data-content="testimonials.items.2.author"></h4>
+                            <p data-content="testimonials.items.2.role"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-content="footer.about.title"></h3>
+                    <p data-content="footer.about.description"></p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" data-social="whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-link" data-social="instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer.columns.services.title"></h3>
+                    <ul data-links="footer.columns.services.links">
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer.columns.quickLinks.title"></h3>
+                    <ul data-links="footer.columns.quickLinks.links">
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer.columns.contact.title"></h3>
+                    <ul data-contact="footer.columns.contact.items">
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-content="footer.copyright"></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flutuante -->
+    <a href="#" class="whatsapp-float" data-whatsapp="url" title="Fale conosco no WhatsApp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Load Scripts -->
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/content-loader.js"></script>
+    <script src="/static/js/selavie-v2.js"></script>
+</body>
+</html>

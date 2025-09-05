@@ -1,207 +1,277 @@
-const siteContent = {
-    meta: {
-        title: "Instituto Selavie - Psicoterapia online e presencial"
-    },
-    whatsapp: {
-        url: "https://bit.ly/43Cl99d",
-        text: "Fale conosco no WhatsApp"
-    },
-    navigation: {
-        home: "Início",
-        about: "Quem Somos",
-        contact: "Contato",
-        services: "Tratamentos",
-        ctaButton: "Fale com um especialista",
-        testimonials: "Depoimentos"
-    },
-    hero: {
-        title: "Quando o corpo vive em alerta ou a mente não desliga, nós cuidamos.",
-        subtitle: "EMDR para traumas • TCC para pensamentos acelerados • Presencial em Curitiba & online para todo o Brasil.",
-        description: "Sessões de 50 min que unem ciência atualizada e acolhimento genuíno para adultos com lembranças dolorosas ou cobranças internas incessantes.",
-        ctaButton: "Quero meu primeiro contato gratuito"
-    },
-    pain: {
-        title: "DOR & IDENTIFICAÇÃO",
-        subtitle: "Identificamos e tratamos suas dores emocionais",
-        description: "",
-        container1: {
-            title: "Trauma (Bruna)",
-            cards: [
-                {
-                    title: "Desconfiança constante",
-                    description: "Você quer se abrir, mas a voz interna insiste: \"E se me ferirem de novo?\"",
-                    icon: "fa-brain"
-                },
-                {
-                    title: "Alerta permanente",
-                    description: "Corpo tenso, sono leve, sustos por qualquer barulho, como se o perigo estivesse sempre na porta.",
-                    icon: "fa-heart"
-                },
-                {
-                    title: "Explosões ou bloqueios",
-                    description: "Raiva que irrompe sem aviso ou congelamento que trava palavras e decisões importantes.",
-                    icon: "fa-balance-scale"
-                },
-                {
-                    title: "Trauma",
-                    description: "Experiências difíceis do passado que continuam afetando seu presente",
-                    icon: "fa-bolt"
-                },
-                {
-                    title: "Insônia",
-                    description: "Dificuldade para dormir ou manter o sono, afetando sua qualidade de vida",
-                    icon: "fa-moon"
-                },
-                {
-                    title: "Autoestima",
-                    description: "Dificuldade em se valorizar e reconhecer suas próprias qualidades",
-                    icon: "fa-lightbulb"
-                }
-            ],
-            cta: {
-                text: "Agende uma consulta com Bruna",
-                link: "https://api.whatsapp.com/send?phone=5541999999999&text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20com%20Bruna"
-            }
+// Instituto Selavie - Site Content Configuration
+// Content loaded from site_content_rows.json (version 36)
+// Configuration for psychology landing page with EMDR and TCC specialties
+
+window.siteContent = {
+  // Meta information
+  meta: {
+    title: "Instituto Selavie - Psicoterapia online e presencial"
+  },
+
+  // Navigation configuration
+  navigation: {
+    home: { text: "Início", url: "/" },
+    about: { text: "Quem Somos", url: "#about" },
+    services: { text: "Serviços", url: "#services" },
+    emdr: { text: "EMDR", url: "#emdr" },
+    tcc: { text: "TCC", url: "#tcc" },
+    testimonials: { text: "Depoimentos", url: "#testimonials" },
+    contact: { text: "Contato", url: "#contact" },
+    ctaButton: { text: "Fale com um especialista", url: "#cta-section" }
+  },
+
+  // WhatsApp configuration
+  whatsapp: {
+    url: "https://bit.ly/43Cl99d",
+    text: "Fale conosco no WhatsApp"
+  },
+
+  // Hero section
+  hero: {
+    title: "Quando a mente acelera ou o corpo não encontra descanso, existe um espaço seguro para você!",
+    subtitle: "Abordagens reconhecidas para lidar com traumas, ansiedade e sobrecarga emocional.",
+    description: "Cada sessão de 50 minutos é um espaço para revisitar sua história, reconhecer impactos emocionais e fortalecer recursos internos para lidar com os desafios — presencial em Curitiba ou online, onde você estiver.",
+    ctaButton: "Dê o primeiro passo e agende sua sessão inicial!"
+  },
+
+  // Pain points section
+  pain: {
+    title: "Como nós podemos te ajudar",
+    subtitle: "",
+    container1: {
+      title: "Trauma",
+      cta: {
+        text: "Descubra como o EMDR pode te ajudar!",
+        link: ""
+      },
+      cards: [
+        {
+          icon: "fa-brain",
+          title: "Desconfiança constante",
+          description: "Você quer se abrir, mas a voz interna insiste: \"E se me ferirem de novo?\""
         },
-        container2: {
-            title: "Mente acelerada (Gabriela)",
-            cta: {
-                text: "Isso é você? Veja a TCC",
-                link: ""
-            },
-            cards: [
-                {
-                    title: "",
-                    description: "Pensamentos correm tão rápido que você trava?",
-                    icon: "fa-comments"
-                },
-                {
-                    title: "",
-                    description: "Culpa por reagir \"demais\" em coisas pequenas?",
-                    icon: "fa-users"
-                },
-                {
-                    title: "",
-                    description: "Procrastina porque o medo de falhar paralisa?",
-                    icon: "fa-lightbulb"
-                }
-            ]
+        {
+          icon: "fa-heart",
+          title: "Alerta permanente",
+          description: "Corpo tenso, sono leve, sustos por qualquer barulho, como se o perigo estivesse sempre na porta."
+        },
+        {
+          icon: "fa-balance-scale",
+          title: "Explosões ou bloqueios",
+          description: "Raiva que irrompe sem aviso ou congelamento que trava palavras e decisões importantes."
+        },
+        {
+          icon: "fa-bolt",
+          title: "Autossabotagem",
+          description: "Quando a oportunidade chega, surge o pensamento: \"Não sou bom o bastante\"; você recua e confirma a profecia."
+        },
+        {
+          icon: "fa-moon",
+          title: "Exaustão emocional",
+          description: "Dias inteiros lutando contra a própria mente, terminando com a sensação de que tudo é pesado demais."
         }
+      ]
     },
-    about: {
-        title: "QUEM SOMOS",
-        subtitle1: "",
-        subtitle2: "",
-        paragraph1: "Certificada EMDRIA, 800 h em traumas complexos. \"Cada dor merece ser ouvida sem pressa.\"",
-        paragraph2: "Especialista em TCC baseada em evidências. \"Traduzo ciência em passos que cabem no dia a dia.\"",
-        link: "Conheça nossa história"
-    },
-    services: {
-        title: "SERVIÇOS",
-        description: "Desenvolvemos programas terapêuticos personalizados para cada paciente, considerando suas necessidades específicas e contexto individual.",
-        items: [
-            {
-                title: "EMDR com Bruna",
-                description: "Seu corpo vive em modo de alerta? O EMDR ajuda o cérebro a ver a lembrança sem pânico.",
-                link: "Agendar com Bruna"
-            },
-            {
-                title: "TCC com Gabriela",
-                description: "Pensamentos acelerados te paralisam? A TCC desmonta crenças de perfeição e cria ações possíveis.",
-                link: "Agendar com Gabriela"
-            },
-            {
-                title: "Acompanhamento Familiar",
-                description: "Suporte terapêutico para familiares, essencial para a recuperação sustentável do paciente e reconstrução dos vínculos afetivos.",
-                link: "Saiba mais"
-            }
-        ]
-    },
-    cta: {
-        title: "Transforme sua vida hoje mesmo",
-        description: "Não espere mais para iniciar sua jornada de recuperação. Entre em contato agora e converse com nossa equipe especializada sobre as melhores opções de tratamento.",
-        mainButton: "Fale conosco no WhatsApp",
-        secondaryButton: "Conheça nossos planos"
-    },
-    testimonials: {
-        title: "Depoimentos",
-        description: "Histórias reais de transformação e superação de pessoas que passaram pelo Instituto Sélavie.",
-        items: [
-            {
-                text: "O tratamento no Instituto Sélavie mudou completamente minha vida. A equipe é extremamente preparada e acolhedora. Hoje estou há 2 anos sem recaídas e reconquistei minha família e meu emprego.",
-                author: "Carlos M.",
-                role: "Paciente recuperado"
-            },
-            {
-                text: "Como mãe, vi meu filho renascer após o tratamento. O suporte que recebemos durante todo o processo foi fundamental não só para ele, mas para toda a família aprender a lidar com a situação.",
-                author: "Márcia P.",
-                role: "Familiar de paciente"
-            },
-            {
-                text: "O diferencial do Sélavie é o tratamento humanizado. Não me senti apenas mais um paciente, mas alguém que realmente importava. As terapias são personalizadas e isso faz toda diferença na recuperação.",
-                author: "Roberto S.",
-                role: "Paciente recuperado"
-            }
-        ]
-    },
-    footer: {
-        copyright: "© 2025 Instituto Sélavie. Todos os direitos reservados.",
-        about: {
-            description: "O Instituto Sélavie é especializado no tratamento humanizado de dependência química, oferecendo suporte completo para recuperação efetiva e sustentável."
+    container2: {
+      title: "Ansiedade e autocobrança",
+      cta: {
+        text: "Descubra como a TCC pode te ajudar!",
+        link: ""
+      },
+      cards: [
+        {
+          icon: "fa-comments",
+          title: "Mente sobrecarregada",
+          description: "Você pensa demais, analisa, antecipa cenários e, mesmo assim, sente que nunca é suficiente."
         },
-        columns: {
-            quickLinks: {
-                title: "Links Rápidos",
-                links: [
-                    { text: "Página Inicial", url: "#" },
-                    { text: "Sobre Nós", url: "#about" },
-                    { text: "Nossos Tratamentos", url: "#services" },
-                    { text: "Equipe", url: "#" },
-                    { text: "Blog", url: "#" },
-                    { text: "Contato", url: "#contact" }
-                ]
-            },
-            treatments: {
-                title: "Tratamentos",
-                links: [
-                    { text: "Internação Voluntária", url: "#" },
-                    { text: "Atendimento Ambulatorial", url: "#" },
-                    { text: "Acompanhamento Familiar", url: "#" },
-                    { text: "Terapias Integrativas", url: "#" },
-                    { text: "Prevenção de Recaídas", url: "#" }
-                ]
-            },
-            contact: {
-                title: "Contato",
-                items: [
-                    {
-                        icon: "fa-map-marker-alt",
-                        text: "Edifício Attività - Av. Rep. Argentina, 1228 - Vila Izabel, Curitiba - PR, 80620-010",
-                        url: "https://maps.google.com/?q=Edifício Attività - Av. Rep. Argentina, 1228 - Vila Izabel, Curitiba - PR, 80620-010"
-                    },
-                    {
-                        icon: "fa-phone",
-                        text: "(41) 98733-9999",
-                        url: "tel:41987339999"
-                    },
-                    {
-                        icon: "fa-envelope",
-                        text: "contato@institutoselavie.com.br",
-                        url: "mailto:contato@institutoselavie.com.br"
-                    },
-                    {
-                        icon: "fa-clock",
-                        text: "Atendimento 24 horas",
-                        url: "#horarios"
-                    }
-                ]
-            }
+        {
+          icon: "fa-users",
+          title: "Culpa silenciosa",
+          description: "Explode, trava, reage, depois se culpa. Você acredita que deveria dar conta de tudo, com elegância e sem falhar."
         },
-        social: {
-            facebook: "#",
-            instagram: "https://www.instagram.com/institutoselavie/",
-            youtube: "#",
-            linkedin: "#"
+        {
+          icon: "fa-lightbulb",
+          title: "Exaustão funcional",
+          description: "Cumpre todos os papéis, mas está sempre no limite. Ninguém vê, mas você sabe: não dá mais para seguir desse jeito."
         }
+      ]
     }
-}; 
+  },
+
+  // About section
+  about: {
+    title: "QUEM SOMOS",
+    subtitle1: "",
+    subtitle2: "Gabriela Pankrasts",
+    paragraph1: "Certificada EMDRIA, 800 h em traumas complexos. Cada dor merece ser ouvida sem pressa.",
+    paragraph2: "Sou especialista em TCC e DBT. Acredito que clareza emocional é poder: quando você entende sua mente, ganha leveza para agir. É isso que faço: transformar ciência em estratégias aplicáveis, sem promessas fáceis, mas com direção concreta.",
+    link: ""
+  },
+
+  // Services section
+  services: {
+    title: "SERVIÇOS",
+    description: "Desenvolvemos programas terapêuticos personalizados para cada paciente, considerando suas necessidades específicas e contexto individual.",
+    items: [
+      {
+        title: "EMDR com Bruna",
+        description: "Seu corpo vive em modo de alerta? O EMDR ajuda o cérebro a ver a lembrança sem pânico.",
+        link: "Agendar com Bruna"
+      },
+      {
+        title: "TCC com Gabriela",
+        description: "Você se cobra demais e sente que nunca é suficiente? A TCC ajuda a transformar autocrítica em clareza e leveza para viver o que importa. Agende sua primeira sessão e descubra como começar essa mudança hoje!",
+        link: "Agendar com Gabriela"
+      }
+    ]
+  },
+
+  // CTA section
+  cta: {
+    title: "Transforme sua vida hoje mesmo",
+    description: "Não espere mais para iniciar sua jornada de recuperação. Entre em contato agora e converse com nossa equipe especializada sobre as melhores opções de tratamento.",
+    mainButton: "Fale conosco no WhatsApp",
+    secondaryButton: "Conheça nossos planos"
+  },
+
+  // Testimonials section
+  testimonials: {
+    title: "Depoimentos",
+    description: "Histórias reais de transformação e superação de pessoas que passaram pelo Instituto Sélavie.",
+    items: [
+      {
+        author: "Carlos M.",
+        role: "Paciente recuperado",
+        text: "O tratamento no Instituto Sélavie mudou completamente minha vida. A equipe é extremamente preparada e acolhedora. Hoje estou há 2 anos sem recaídas e reconquistei minha família e meu emprego."
+      },
+      {
+        author: "Márcia P.",
+        role: "Familiar de paciente",
+        text: "Como mãe, vi meu filho renascer após o tratamento. O suporte que recebemos durante todo o processo foi fundamental não só para ele, mas para toda a família aprender a lidar com a situação."
+      },
+      {
+        author: "Roberto S.",
+        role: "Paciente recuperado",
+        text: "O diferencial do Sélavie é o tratamento humanizado. Não me senti apenas mais um paciente, mas alguém que realmente importava. As terapias são personalizadas e isso faz toda diferença na recuperação."
+      }
+    ]
+  },
+
+  // EMDR section
+  emdr: {
+    title: "Flashbacks, hipervigilância, medo de abandono?",
+    description: "O EMDR faz seu cérebro enxergar a lembrança sem o alarme emocional; a ansiedade diminui e o corpo relaxa. A Terapia EMDR (Eye Movement Desensitization and Reprocessing) é uma abordagem terapêutica eficaz para o tratamento de traumas e transtornos de ansiedade. Através de movimentos oculares bilaterais, ajudamos seu cérebro a processar memórias traumáticas de forma natural e eficiente.",
+    cta: {
+      text: "Quero avaliar meu caso com Bruna",
+      url: "https://api.whatsapp.com/send?phone=5541999999999&text=Olá,%20gostaria%20de%20agendar%20uma%20sessão%20de%20EMDR"
+    },
+    cards: [
+      {
+        title: "Reprocessamento Cerebral",
+        description: "Estimulação bilateral que ajuda o cérebro a processar memórias traumáticas de forma natural e eficiente."
+      },
+      {
+        title: "Alívio Emocional",
+        description: "Redução significativa do impacto emocional negativo associado a experiências traumáticas."
+      },
+      {
+        title: "Resultados Comprovados",
+        description: "Método reconhecido pela OMS e eficaz no tratamento de TEPT e outros transtornos de ansiedade."
+      }
+    ]
+  },
+
+  // TCC section
+  tcc: {
+    title: "Você se cobra o tempo todo, mas nunca se sente suficiente?",
+    description: "A TCC é para quem busca clareza, estrutura e alívio, sem perder profundidade.\n\nNa Terapia Cognitivo-Comportamental, você aprende a identificar padrões rígidos de pensamento, desafiar a autocrítica e construir, passo a passo, uma nova relação com o que pensa, e com o que sente.",
+    cta: {
+      text: "Quero avaliar meu caso com Gabriela Pankrasts.",
+      url: "https://api.whatsapp.com/send?phone=5541999999999&text=Olá,%20gostaria%20de%20agendar%20uma%20sessão%20de%20TCC"
+    },
+    cards: [
+      {
+        title: "Clareza de padrões",
+        description: "Entenda por que sua mente corre tanto, e o que realmente está por trás da cobrança constante."
+      },
+      {
+        title: "Técnicas aplicáveis",
+        description: "Técnicas práticas, baseadas em evidência, para transformar pensamento acelerado em decisões conscientes."
+      },
+      {
+        title: "Resultados Mensuráveis",
+        description: "Acompanhamento constante do progresso com metas claras e resultados mensuráveis ao longo do tratamento."
+      }
+    ]
+  },
+
+  // Footer section
+  footer: {
+    about: {
+      description: "O Instituto Sélavie é especializado no tratamento humanizado de dependência química, oferecendo suporte completo para recuperação efetiva e sustentável."
+    },
+    columns: {
+      contact: {
+        title: "Contato",
+        items: [
+          {
+            icon: "fa-map-marker-alt",
+            text: "Edifício Attività - Av. Rep. Argentina, 1228 - Vila Izabel, Curitiba - PR, 80620-010 - Sala 1606",
+            url: "https://maps.google.com/?q=Edif%C3%ADcio%20Attivit%C3%A0%20-%20Av.%20Rep.%20Argentina%2C%201228%20-%20Vila%20Izabel%2C%20Curitiba%20-%20PR%2C%2080620-010%20-%20Sala%201606"
+          },
+          {
+            icon: "fa-phone",
+            text: "(41) 9 9855-8987",
+            url: "tel:41998558987"
+          },
+          {
+            icon: "fa-envelope",
+            text: "institutoselavie@gmail.com",
+            url: "mailto:institutoselavie@gmail.com"
+          },
+          {
+            icon: "fa-clock",
+            text: "Seg – Sex • 8h – 20h",
+            url: "#horarios"
+          }
+        ]
+      },
+      quickLinks: {
+        title: "Links Rápidos",
+        links: [
+          { text: "Página Inicial", url: "#" },
+          { text: "Sobre Nós", url: "#about" },
+          { text: "Nossos Tratamentos", url: "#services" },
+          { text: "Equipe", url: "#" },
+          { text: "Blog", url: "#" },
+          { text: "Contato", url: "#contact" }
+        ]
+      },
+      treatments: {
+        title: "Tratamentos",
+        links: [
+          { text: "Internação Voluntária", url: "#" },
+          { text: "Atendimento Ambulatorial", url: "#" },
+          { text: "Acompanhamento Familiar", url: "#" },
+          { text: "Terapias Integrativas", url: "#" },
+          { text: "Prevenção de Recaídas", url: "#" }
+        ]
+      }
+    },
+    social: {
+      instagram: "https://www.instagram.com/institutoselavie/",
+      facebook: "#",
+      linkedin: "#",
+      youtube: "#"
+    },
+    copyright: "© 2025 Instituto Sélavie. Todos os direitos reservados."
+  }
+};
+
+// Default content fallback for when Supabase is unavailable
+window.defaultContent = window.siteContent;
+
+// Export for use in other modules
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = window.siteContent;
+}
